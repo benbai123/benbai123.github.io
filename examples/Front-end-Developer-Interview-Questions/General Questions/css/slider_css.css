@@ -1,0 +1,77 @@
+/* out most wrapper */
+.slider {
+    width: 810px;
+    height: 810px;
+    background-color: white;
+    position: relative;
+}
+/* wrapper for contents */
+.contents {
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    /* prevent line break so all contents will stay at one line */
+    word-wrap: normal;
+    overflow: hidden;
+}
+.content {
+    display: inline-block;
+    width: 800px;
+    height: 800px;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 380px;
+}
+.left-arrow {
+    position: absolute;
+    left: 10px;
+    top: 400px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid green;
+}
+.right-arrow {
+    position: absolute;
+    right: 10px;
+    top: 400px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid green;
+}
+
+/* all above are same with js version */
+/* all below are specific for pure CSS slider */
+
+/* hide all content and arrow */
+.c1, .c2, .c3 {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.5s;
+}
+.s1, .s2, .s3 {
+    z-index: -1;
+    transition: z-index 0.5s;
+}
+#slider_1, #slider_2, #slider_3 {
+    display: none;
+}
+
+/* show specific content and arrow, based on checked status of radio */
+#slider_1:checked ~ .slider .c1 {
+  width: 800px;
+}
+#slider_1:checked ~ .slider .s1 {
+    z-index: 1;
+}
+#slider_2:checked ~ .slider .c2 {
+  width: 800px;
+}
+#slider_2:checked ~ .slider .s2 {
+    z-index: 1;
+}
+#slider_3:checked ~ .slider .c3 {
+  width: 800px;
+}
+#slider_3:checked ~ .slider .s3 {
+    z-index: 1;
+}

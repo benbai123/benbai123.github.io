@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider with pure CSS</title>
+        <link rel="stylesheet" type="text/css" href="css/slider_css.css">
+    </head>
+
+    <body>
+        <h1>Simple example for Slider with pure CSS, Only tested on Chrome</h1>
+        <!-- radio buttons used to control content and arrow,
+            based on their checked status -->
+        <input type="radio" name="ctrl" id="slider_1" value="slider_1" checked="true" />
+        <input type="radio" name="ctrl" id="slider_2" value="slider_2" />
+        <input type="radio" name="ctrl" id="slider_3" value="slider_3" />
+        <div class="slider">
+            <div class="contents">
+                <div class="content c1">content 1</div>
+                <div class="content c2">content 2</div>
+                <div class="content c3">content 3</div>
+            </div>
+            <!-- arrows for slider one -->
+            <label class="left-arrow s1" for="slider_3"></label>
+            <label class="right-arrow s1" for="slider_2"></label>
+            <!-- arrows for slider two -->
+            <label class="left-arrow s2" for="slider_1"></label>
+            <label class="right-arrow s2" for="slider_3"></label>
+            <!-- arrows for slider 3 -->
+            <label class="left-arrow s3" for="slider_2"></label>
+            <label class="right-arrow s3" for="slider_1"></label>
+        </div>
+    </body>
+
+</html>
