@@ -1,0 +1,19 @@
+/* put related CSS file in CSS property */
+@media screen and (max-width: 800px) {
+    .ctrl {
+        content: '<link rel="stylesheet" media="only screen and (max-width:800px)" href="small.css" />';
+    }
+}
+@media screen and (min-width: 800px) {
+    .ctrl {
+        content: '<link rel="stylesheet" media="only screen and (min-width:800px)" href="large.css" />';
+    }
+}
+.ctrl {
+    position: fixed;
+    left: -9999px;
+}
+.content {
+    margin: 50px;
+    font-size: 24px;
+}

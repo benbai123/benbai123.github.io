@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>General Media Query</title>
+        <link rel="stylesheet" type="text/css" href="base.css" />
+        <link rel="stylesheet" media="only screen and (max-width:800px)" href="small.css" />
+        <link rel="stylesheet" media="only screen and (min-width:800px)" href="large.css" />
+    </head>
+
+    <body>
+        <div class="content">
+            The text is Green if width under 800px, Blue otherwise.
+            <br/>
+            But you will find browser load both CSS files.
+            <br/>
+            (See Network tab in Developer tools)
+            <br/>
+            (You can press Ctrl and scroll mouse wheel to zoom in for testing)
+            <br/>
+            <br/>
+            Tested on Chrome only
+        </div>
+        <!-- Assume jQuery is needed -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    </body>
+
+</html>

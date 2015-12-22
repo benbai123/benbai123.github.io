@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>General Media Query</title>
+        <link rel="stylesheet" type="text/css" href="base.css" />
+    </head>
+
+    <body>
+        <!-- element used to get CSS file from content property -->
+        <span class="ctrl"></span>
+        <!-- hide it at the begining to prevent FOUC -->
+        <div class="content" style="display: none;">
+            The text is Green if width under 800px, Blue otherwise.
+            <br/>
+            And you will find browser load only one of small.css/large.css,
+            <br/>
+            then load another one if needed.
+            <br/>
+            (See Network tab in Developer tools)
+            <br/>
+            (You can press Ctrl and scroll mouse wheel to zoom in for testing)
+            <br/>
+            <br/>
+            Tested on Chrome only
+        </div>
+        <!-- Assume jQuery is needed -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <!-- load CSS file as needed -->
+        <script>
+            // window loaded
+            $(window).on('load', function () {
+                // get current CSS
+                var $link = $("<div>"+$('.ctrl').css('content').replace(/\\/g, '')+"</div>").find('link')
+                // load it
+                $('head').append($link);
+                // show content after CSS is loaded
+                $link.on('load', function () {
+                    $('.content').css('display', '');
+                });
+            // window resized
+            }).on('resize', function () {
+                // get related CSS link
+                var $link = $("<div>"+$('.ctrl').css('content').replace(/\\/g, '')+"</div>").find('link'),
+                    href = $link.attr('href');
+                // load it if didn't load before
+                if (!$('link[href="'+href+'"]')[0]) {
+                    $('head').append($link);
+                }
+            });
+        </script>
+    </body>
+
+</html>
