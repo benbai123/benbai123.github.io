@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ID as Anchor</title>
+        <style>
+            body {
+                margin-top: 15%;
+                text-align: center;
+            }
+            a,
+            div {
+                font-size: 24px;
+            }
+            #block-one,
+            #block-two {
+                width: 100%;
+                height: 100%;
+                padding-top: 15%;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 id="top">ID can work with url hash</h1>
+        <a href="#block-one">Go to block one</a><br/>
+        <a href="#block-two">Go to block two</a>
+        <div id="block-one"
+            style="position: absolute; top: 2000px;">
+            This is block one<br/>
+            <a href="#block-two">Go to block two</a><br/>
+            <a href="#top">Go to block top</a>
+        </div>
+        <div id="block-two"
+            style="position: absolute; top: 4000px;">
+            This is block two<br/>
+            <a href="#block-one">Go to block one</a><br/>
+            <a href="#top">Go to block top</a>
+        </div>
+    </body>
+
+</html>
