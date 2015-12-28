@@ -1,0 +1,146 @@
+/* all boxes are 100 x 100 */
+div {
+    width: 500px;
+    height: 100px;
+    font-size: 18px;
+}
+.desc {
+    position: fixed;
+    top: 20%;
+    margin-left: 600px;
+    font-size: 28px;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+/* parent with blue background; */
+.p {
+    background-color: blue;
+}
+/* first child with green background */
+.c {
+    background-color: green;
+}
+/* second child with yellow background */
+.c2 {
+    background-color: yellow;
+}
+/* test fixed position parent wit fixed position child
+    overflow: hidden; will NOT hide the fixed position child
+    z-index CANNOT make parent on top of its child
+ */
+.pc-p-1 {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    overflow: hidden;
+    z-index: 100;
+}
+.pc-c-1 {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+}
+/* test fixed position parent wit absolute position child
+    overflow: hidden; will hide the absolute position child
+    z-index CANNOT make parent on top of its child
+ */
+.pc-p-2 {
+    position: fixed;
+    top: 120px;
+    left: 10px;
+    overflow: hidden;
+    z-index: 100;
+}
+.pc-c-2 {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    z-index: 1;
+}
+/* test absolute position parent wit fixed position child
+    overflow: hidden; will NOT hide the fixed position child
+    z-index CANNOT make parent on top of its child
+ */
+.pc-p-3 {
+    position: absolute;
+    top: 230px;
+    left: 10px;
+    overflow: hidden;
+    z-index: 100;
+}
+.pc-c-3 {
+    position: fixed;
+    top: 225px;
+    left: 5px;
+    z-index: 1;
+}
+/* test absolute position parent wit absolute position child
+    overflow: hidden; will hide the absolute position child
+    z-index CANNOT make parent on top of its child
+ */
+.pc-p-4 {
+    position: absolute;
+    top: 340px;
+    left: 10px;
+    overflow: hidden;
+    z-index: 100;
+}
+.pc-c-4 {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    z-index: 1;
+}
+/* test fixed position siblings
+    z-index works well so first div is on top of its next sibling
+ */
+.sib-c-1 {
+    position: fixed;
+    top: 450px;
+    left: 5px;
+    z-index: 10;
+}
+.sib-c2-1 {
+    position: fixed;
+    top: 455px;
+    left: 10px;
+    z-index: 1;
+}
+/* test fixed position siblings
+    z-index still works well even the level of first div is lower
+ */
+.sib-c-2 {
+    position: fixed;
+    top: 560px;
+    left: 5px;
+    z-index: 10;
+}
+.sib-c2-2 {
+    position: fixed;
+    top: 565px;
+    left: 10px;
+    z-index: 1;
+}
+/* test absolute position siblings
+    z-index still works well even the level of first div is lower
+    and has fixed position parent
+ */
+ .sib-p-3 {
+    overflow: hidden;
+    position: fixed;
+    top: 680px;
+    left: 10px;
+ }
+.sib-c-3 {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    z-index: 10;
+}
+.sib-c2-3 {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+}

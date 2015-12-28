@@ -1,0 +1,87 @@
+.desc {
+    font-size: 24px;
+}
+.fl {
+    float: left;
+    width: 50px;
+    height: 50px;
+    background-color: green;   
+}
+.clear {
+    clear: both;
+}
+/* BFC with overflow: hidden; */
+.bfc-oh {
+    overflow: hidden;
+}
+/* BFC with display: table-cell; */
+.bfc-d {
+    display: table-cell;
+}
+/* BFC with float: left;,
+  just use specific class name for float-left */
+.bfc-fl {
+    float: left;
+}
+/* In a block formatting context, each box’s left outer edge touches the left edge of the containing block */
+.bfc-oh-1 {
+    border: 5px solid green;
+}
+.t1-1, .t1-2, .t1-3 {
+    width: 50px;
+    height: 50px;
+}
+.t1-1 {
+    border: 5px solid black;
+    background-color: yellow;
+}
+.t1-2 {
+    background-color: purple;
+}
+.t1-3 {
+    background-color: pink;
+}
+/* Vertical margins between adjacent block-level boxes in a block formatting context collapse. */
+.bfc-oh-2 {
+    background-color: green;
+}
+.t2 {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background-color: blue;
+}
+/* Using a Block Formatting Context to Contain Floats */
+.t3 {
+    padding: 5px;
+    border: 5px solid green;
+}
+/* Using Block Formatting Contexts to Prevent Text Wrapping */
+.t4 {
+    width: 250px;
+    border: 5px solid #CCCCCC;
+    padding: 10px;
+}
+.t4 .fl {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+.t4 .text {
+    font-size: 18px;
+}
+/* Using Block Formatting Contexts in Multi-column Layouts */
+.t5 {
+    min-height: 200px;
+}
+.t5 .fl {
+  width: 31.33%;
+  min-height: 100px;
+  background-color: green;
+  float: left;
+  min-height: 100px;
+  margin: 0 1%;
+}
+.t5 .fl:last-child {
+    float: none; /* this cause the line break */
+}

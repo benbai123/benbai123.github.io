@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stacking Context Test</title>
+        <link rel="stylesheet" type="text/css" href="css/block_formatting_contexts.css" />
+    </head>
+    <body>
+        <div class="desc">
+            Test case for BFC (Block formatting contexts), Tested on Chrome only.
+        </div><br/><br/>
+        <div class="desc">
+            Test 1<br/>
+            In a block formatting context, each box’s left outer edge touches the left edge of the containing block
+        </div>
+        <div class="bfc-oh bfc-oh-1">
+            <div class="t1-1"></div>
+            <div class="t1-2"></div>
+            <div class="t1-3"></div>
+        </div><br/><br/>
+        <div class="desc">
+            Test 2<br/>
+            Vertical margins between adjacent block-level boxes in a block formatting context collapse.
+        </div>
+        <div class="bfc-oh bfc-oh-2">
+            <div class="t2"></div>
+            <div class="t2"></div>
+        </div>
+        <div class="desc">
+            But (wrapping the box by) new BFC avoid it.
+        </div>
+        <div class="bfc-oh bfc-oh-2">
+            <div class="t2"></div>
+            <div class="bfc-oh">
+                <div class="t2"></div>
+            </div>
+        </div>
+        <div class="desc">
+            Just making sure it stil collabse if wrapping with a div which is not a BFC (even second t2 is a BFC)
+        </div>
+        <div class="bfc-oh bfc-oh-2">
+            <div class="t2"></div>
+            <div>
+                <div class="bfc-oh t2"></div>
+            </div>
+        </div><br/><br/>
+        <div class="desc">
+            Test 3<br/>
+            Using a Block Formatting Context to Contain Floats<br/>
+            Test common case (wrong height) first
+        </div>
+        <div class="t3">
+            <div class="fl"></div>
+        </div>
+        <!-- clear to position next test block properly -->
+        <div class="clear"></div>
+        <div class="desc">
+            Wrap float by BFC<br/>
+            clear free
+        </div>
+        <div class="bfc-oh t3">
+            <div class="fl"></div>
+        </div>
+        <div class="desc">
+            Wrap float by another BFC (float: left;)<br/>
+            still need clear if you want line break
+        </div>
+        <div class="bfc-fl t3">
+            <div class="fl"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="desc">
+            Wrap float by another BFC (display: table-cell;)<br/>
+            clear free
+        </div>
+        <div class="bfc-d t3">
+            <div class="fl"></div>
+        </div>
+        The text just make sure its clear-free.
+        <br/><br/><br/>
+        <div class="desc">
+            Test 4<br/>
+            Using Block Formatting Contexts to Prevent Text Wrapping<br/>
+            Common case (wrap) first
+        </div>
+        <div class="t4">
+            <div class="fl">
+            </div>
+            <div class="text">
+                some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing
+            </div>
+        </div>
+        <div class="desc">
+            Use BFC to avoid text wrapping<br/>
+            Different with Test 2, do not need an extra wrapper<br/>
+            but the text block should be a "block-level"<br/>
+            "inline" will always wrapping and need an extra BFC wrapper,<br/>
+            "inline-block" will always cause line-break
+        </div>
+        <div class="t4">
+            <div class="fl">
+            </div>
+            <div class="bfc-oh text">
+                some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing, some text for testing
+            </div>
+        </div>
+        <div class="desc">
+            Test 5<br/>
+            Using Block Formatting Contexts in Multi-column Layouts<br/>
+            Common case (line break) first
+        </div>
+        <div class="t5">
+            <div class="fl">
+                column one
+            </div>
+            <div class="fl">
+                column two
+            </div>
+            <div class="fl">
+                column three
+            </div>
+        </div>
+        <div class="desc">
+            Using Block Formatting Contexts in Multi-column Layouts
+        </div>
+        <div class="t5">
+            <div class="fl">
+                column one
+            </div>
+            <div class="fl">
+                column two
+            </div>
+            <div class="fl bfc-oh">
+                column three
+            </div>
+        </div>
+        <div class="desc">
+            Personally I prefer using inline-blocks with "white-space: nowrap;" and "word-wrap: normal;" for column layout.
+        </div>
+    </body>
+
+</html>
