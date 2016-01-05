@@ -1,0 +1,71 @@
+body {
+    padding: 100px;
+}
+div {
+    font-size: 24px;
+}
+.desc {
+    font-size: 28px;
+    white-space: nowrap;
+    word-wrap: normal;
+    margin-top: 20px;
+}
+/* Test 1
+    The rule "further down in the CSS" has higher priority */
+.t1 {
+    color: red;
+}
+.t1 {
+    /* this one has higher priority */
+    color: green;
+}
+/* Test 2
+    the class which is "closer to the actual text" has higher priority */
+.t2 {
+    color: red;
+}
+.t2-inner {
+    /* this one has higher priority */
+    color: green;
+}
+/* Test 3
+    ID has higher priority than class */
+#t3 {
+    /* this one has higher priority */
+    color: red;
+}
+.t3 {
+    color: green;
+}
+/* Test 4
+    class has higher priority than tag */
+.t4 .t4-inner {
+    /* this one has higher priority */
+    color: red;
+}
+.t4 div {
+    color: green;
+}
+/* Test 5
+    Specify its parent is stronger than specify its multiple class */
+.t5 .t5-inner {
+    color: red;
+}
+.t5i.t5inner {
+    color: green;
+}
+/* Test 6
+    !important raise priority however */
+.t6 {
+    color: green !important;
+}
+#t6 {
+    color: red;
+}
+/* Test 7
+    Inlie style is strongest (except !important) */
+#t7,
+.t7,
+#t7.t7 {
+    color: red;
+}

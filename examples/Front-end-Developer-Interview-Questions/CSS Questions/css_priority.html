@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stacking Context Test</title>
+        <link rel="stylesheet" type="text/css" href="css/css_priority.css" />
+    </head>
+    <body>
+        <div class="desc">
+            Tested on Chrome only.
+        </div>
+        <div class="desc">
+            Test 1<br/>
+            The rule "further down in the CSS" has higher priority
+        </div>
+        <div class="t1">
+            Test (should in green)
+        </div>
+        <div class="desc">
+            Test 2<br/>
+            the class which is "closer to the actual text" has higher priority
+        </div>
+        <div class="t2">
+            <div class="t2-inner">
+                Test (should in green)
+            </div>
+        </div>
+        <div class="desc">
+            Test 3<br/>
+            ID has higher priority than class
+        </div>
+        <div id="t3" class="t3">
+            Test (should in red)
+        </div>
+        <div class="desc">
+            Test 4<br/>
+            class has higher priority than tag
+        </div>
+        <div class="t4">
+            <div class="t4-inner">
+                Test (should in red)
+            </div>
+        </div>
+        <div class="desc">
+            Test 5<br/>
+            Specify its parent is stronger than specify its multiple class
+        </div>
+        <div class="t5">
+            <div class="t5i t5-inner">
+                Test (should in red)
+            </div>
+        </div>
+        <div class="desc">
+            Test 6<br/>
+            !important raise priority however
+        </div>
+        <div class="t6" id="t6">
+            Test (should in green)
+        </div>
+        <div class="desc">
+            Test 7<br/>
+            Inlie style is strongest (except !important)
+        </div>
+        <div class="t7" id="t7" style="color: green;">
+            Test (should in green)
+        </div>
+    </body>
+
+</html>
