@@ -63,7 +63,7 @@ div {
     color: red;
 }
 /* Test 7
-    Inlie style is strongest (except !important) */
+    Inline style is strongest (except !important) */
 #t7,
 .t7,
 #t7.t7 {
