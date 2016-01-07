@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Absolute and Translate Test</title>
+        <link rel="stylesheet" type="text/css" href="css/absolute_and_translate.css" />
+    </head>
+    <body>
+        <div class="desc">
+            Test case for absolute position and transform with translate.<br/>
+            Tested on Chrome only.
+        </div><br/><br/>
+        <div class="desc">
+            Test 1<br/>
+            Whether need parent support
+        </div>
+        <div class="t1">
+            <div class="parent">
+                <div class="abs">
+                    absolute positioning need positioned ancestor to support it<br/>
+                    or it will use the document body (see the one at top left corner)
+                </div>
+            </div>
+            <div class="abs">
+                this one uses the document body
+            </div>
+            <div class="trans">
+                transform with translate works well with the element itself
+            </div>
+        </div>
+        <div class="desc">
+            Test 2<br/>
+            Whether out of flow
+        </div>
+        <div class="t2">
+            <div class="parent">
+                <div class="abs">
+                    absolute positioning out of the flow<br/>
+                    you can see the text moved up
+                </div>
+                <div class="text">THE TEXT</div>
+            </div>
+            <div class="trans">
+                transform more like relative positioning<br/>
+                the text stay the same position
+            </div>
+            <div class="text">THE TEXT</div>
+            <div class="trans trans2">
+                however you can mix transform with absolute positioning<br/>
+                you can see the text also moved up<br/>
+                NOTE: Probably not a stable use case
+            </div>
+            <div class="text">THE TEXT</div>
+        </div>
+        <div class="desc">
+            Test 3<br/>
+            Translate will be affected by padding
+        </div>
+        <div class="t3">
+            <div class="parent">
+                <div class="abs">
+                    absolute positioning will not be affected by padding
+                </div>
+            </div>
+            <div class="parent">
+                <div class="trans">
+                    translate will be affected by padding
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
