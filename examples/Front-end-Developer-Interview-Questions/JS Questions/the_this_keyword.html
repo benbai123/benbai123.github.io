@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test what the "this" keyword is</title>
+        <script src="js/the_this_keyword.js"></script>
+        <style>
+            /* is js test so just some simple styles */
+            body {
+                padding: 50px;
+            }
+            * {
+                font-size: 24px;
+            }
+            button {
+                color: blue;
+            }
+            #curr {
+                border: 1px solid green;
+                display: inline-block;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin: 20px;">
+            Current this will be displayed here<br/>
+            <div id="curr">&nbsp;</div>
+        </div>
+        <div>
+            When evaluating code in the initial global execution context (global scope),<br/>
+            ThisBinding is set to the global object (if in browser, window) <br/>
+            See current value when page loaded above
+        </div><br/>
+            <script>
+                display(this);
+            </script>
+        <div>
+            If a function is called on an object,<br/>
+            such as in `obj.myMethod()` or the equivalent `obj["myMethod"]()`,<br/>
+            then ThisBinding is set to the object `obj`.<br/>
+            <button onclick="obj.foo()">Test</button>
+        </div><br/>
+        <div>
+            by a direct call to eval(), ThisBinding is left unchanged;<br/>
+            it is the same value as the ThisBinding of the calling execution context<br/>
+            Here call eval() in obj.evalFoo so it will be Object obj<br/>
+            <button onclick="obj.evalFoo()">Test</button>
+        </div><br/>
+        <div>
+            if not by a direct call to eval(),<br/>
+            ThisBinding is set to the global object as if executing in the initial global execution context <br/>
+            <button onclick="obj.indirectEvalFoo()">Test</button>
+        </div><br/>
+        <div>
+            If call a function directly e.g. `myFun()`, then ThisBinding is set to global object.<br/>
+            <button onclick="foo()">Test</button>
+        </div><br/>
+        <div>
+            There are some functions that allow you to specify ThisBinding<br/>
+            Here test Array.prototype.forEach( callbackfn [ , thisArg ] ) <br/>
+            And specify a String "The Specified One" as ThisBinding<br/>
+            <button onclick="[1].forEach(foo, 'The Specified One');">Test</button>
+        </div><br/>
+        <div>
+            When a function is called in a constructor context,<br/>
+            the value of this is the new object that the interpreter created<br/>
+            <button onclick="new foo()">Test</button>
+        </div><br/>
+    </body>
+</html>
