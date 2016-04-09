@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'NotoSansCJK';
+  src: font-url('../fonts/NotoSansCJKtc-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/NotoSansCJKtc-Regular.otf') format("opentype");
+}
+@font-face {
+  font-family: 'NotoSansCJK';
+  src: font-url('../fonts/NotoSansCJKtc-Bold.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/NotoSansCJKtc-Bold.otf') format("opentype");
+  font-weight: bold;
+}
+div {
+  font-size: 48px;
+}
+.NotoSansCJK {
+    font-family: 'NotoSansCJK';
+    
+}
