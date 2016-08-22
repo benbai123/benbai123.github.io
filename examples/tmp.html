@@ -5,6 +5,9 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
+    
+  </head>
+  <body>
     <script>
       var saveData = (function () {
     var a = document.createElement("a");
@@ -25,8 +28,6 @@
 
 
     </script>
-  </head>
-  <body>
     <span onclick="saveData({ x: 42, s: "hello, world", d: new Date() }, 'my-download.json');">test</span>
     <script>
       // downloadURI("data:text/html,HelloWorld!", "helloWorld.txt");
