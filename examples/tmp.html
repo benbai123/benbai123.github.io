@@ -6,16 +6,28 @@
     <meta http-equiv="Expires" content="0" />
 
     <script>
-      function downloadURI(uri, name) {
-        var link = document.createElement("a");
-        link.download = name;
-        link.href = uri;
-        link.click();
-      }
+      var saveData = (function () {
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    return function (data, fileName) {
+        var json = JSON.stringify(data),
+            blob = new Blob([json], {type: "octet/stream"}),
+            url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    };
+}());
+
+
+
+
     </script>
   </head>
   <body>
-    <span onclick="downloadURI('data:text/html,HelloWorld!', 'helloWorld.txt');">test</span>
+    <span onclick="saveData({ x: 42, s: "hello, world", d: new Date() }, 'my-download.json');">test</span>
     <script>
       // downloadURI("data:text/html,HelloWorld!", "helloWorld.txt");
     </script>
