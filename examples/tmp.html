@@ -4,31 +4,18 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
-    
+    <script async="" src="https://cdn.rawgit.com/eligrey/Blob.js/0cef2746414269b16834878a8abc52eb9d53e6bd/Blob.js"/>
+    <script async="" src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"/>
+    <script async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"/>
   </head>
   <body>
     <script>
-      var saveData = (function () {
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-    return function (data, fileName) {
-        var json = JSON.stringify(data),
-            blob = new Blob([json], {type: "octet/stream"}),
-            url = window.URL.createObjectURL(blob);
-        a.href = url;
-        a.download = fileName;
-        a.click();
-        window.URL.revokeObjectURL(url);
-    };
-}());
-
-
-
-
+      function saveData () {
+        var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "hello world.txt");
+      }
     </script>
-    <span onclick="saveData({ x: 42, s: 'hello, world', d: new Date() }, 'my-download.json');">test</span>
+    <span onclick="saveData();">test</span>
     <script>
       // downloadURI("data:text/html,HelloWorld!", "helloWorld.txt");
     </script>
