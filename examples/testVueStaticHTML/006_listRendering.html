@@ -29,8 +29,8 @@
 		<script src="codemirror/addon/display/placeholder.js"></script>
 	</head>
     <body>
-		<div class="prev"><a href="000_vueBasics.html">&lt;</a></div>
-		<div class="next"><a href="002_vueTemplate.html">&gt;</a></div>
+		<div class="prev"><a href="005_conditional.html">&lt;</a></div>
+		<div class="next"><a href="006_listRendering.html">&gt;</a></div>
 		<div class="tests">
 			<div class="test-block exec">
 				<div class="desc">template syntax</div>
@@ -48,104 +48,118 @@
 				
 				<div class="test-block src">
 					<div class="desc">
-						Vue instance sync with data automatically
+						Mapping an Array to Elements with v-for
 					</div>
 					<textarea class="html" placeholder="Enter HTML">
-						<div id="out"></div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
-						// Our data object
-						var data = { a: 1 },
-							out = document.getElementById('out');
+						<div id="example">
+							<ul>
+							  <li v-for="item in items">
+								{{ item.message }}
+							  </li>
+							</ul>
+							You can also use of as the delimiter instead of in, so that it is closer to JavaScript's syntax for iterators:
 
-						// The object is added to a Vue instance
-						var vm = new Vue({
-						  data: data
-						})
 
-						// Getting the property on the instance
-						// returns the one from the original data
-						out.innerHTML += (vm.a == data.a)+'<br/>';
-						vm.a == data.a // => true
+							<ul>
+							  <li v-for="item of items">
+								{{ item.message }}
+							  </li>
+							</ul>
+							Inside v-for blocks we have full access to parent scope properties. v-for also supports an optional second argument for the index of the current item.
 
-						// Setting the property on the instance
-						// also affects the original data
-						vm.a = 2
-						out.innerHTML += (data.a)+'<br/>';
 
-						// ... and vice-versa
-						data.a = 3
-						vm.a // => 3
-						out.innerHTML += (vm.a)+'<br/>';
-						
-						// property not exists at the beginning, not works
-						vm.b = 5;
-						out.innerHTML += (data.b)+'<br/>';
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD"></textarea>
-				</div>
-				
-				<div class="test-block src">
-					<div class="desc">
-						Vue default instance properties
-					</div>
-					<textarea class="html" placeholder="Enter HTML">
-						<div id="example" v-html="message">
+							<ul>
+							  <li v-for="(item, index) in items">
+								{{ parentMessage }} - {{ index }} - {{ item.message }}
+							  </li>
+							</ul>
 						</div>
 					</textarea>
 					<textarea class="js" placeholder="Enter Test JavaScript">
-						var data = { a: 1, message: '' }
 						var vm = new Vue({
 						  el: '#example',
-						  data: data
-						})
-						
-						// instance properties start with '$'
-						data.message +=
-							vm.$data === data // => true
-						data.message += '<br/>';
-						data.message +=
-							vm.$el === document.getElementById('example') // => true
-						data.message += '<br/>';
-
-						// $watch is an instance method
-						vm.$watch('a', function (newValue, oldValue) {
-						  // This callback will be called when `vm.a` changes
-						  data.message += 'vm.a changed from ' + oldValue + ' to ' + newValue;
-						  data.message += '<br/>';
-						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
-						vm.a = 123;
-					</textarea>
-				</div>
-				
-				<div class="test-block src">
-					<div class="desc">
-						Vue lifecycle hooks
-					</div>
-					<textarea class="html" placeholder="Enter HTML">
-						<div id="example" v-html="msg">
-						</div>
-						Ref: 
-						<a href="https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram" target="_blank">Vue Lifecycle Diagram</a>
-						<br />
-						<a href="https://vuejs.org/v2/api/#Options-Lifecycle-Hooks" target="_blank">Vue Lifecycle Hooks</a>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
-						new Vue({
-						  el: '#example',
-						  data: {
-							a: 1, msg: ''
-						  },
-						  created: function () {
-							// `this` points to the vm instance
-							this.msg = 'created, a is: ' + this.a;
+						   data: {
+							parentMessage: 'Parent',
+							items: [
+							  { message: 'Foo' },
+							  { message: 'Bar' }
+							]
 						  }
 						})
 					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD"></textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						vm.items.push({ message: 'bac' });
+					</textarea>
 				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						v-for with an Object
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <li v-for="value in object">
+								{{ value }}
+							  </li>
+							</ul>
+							You can also provide a second argument for the key:
+							<ul>
+							  <li v-for="(value, key) in object">
+								{{ key }}: {{ value }}
+							  </li>
+							</ul>
+							And another for the index:
+							<ul>
+							  <li v-for="(value, key, index) in object">
+								{{ index }}. {{ key }}: {{ value }}
+							  </li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+							object: {
+							  firstName: 'John',
+							  lastName: 'Doe',
+							  age: 30
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					vm.object = {
+					  weightKG: 80,
+					  firstName: 'John',
+					  lastName: 'Doe',
+					  age: 30
+					};
+					</textarea>
+				</div>
+				
+<!--				
+				<div class="test-block src">
+					<div class="desc">
+					
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {}
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+-->
 			</div>
 		</div>
 		<iframe id="iframe" frameBorder="0"></iframe>

@@ -29,8 +29,8 @@
 		<script src="codemirror/addon/display/placeholder.js"></script>
 	</head>
     <body>
-		<div class="prev"><a href="001_vueInstance.html">&lt;</a></div>
-		<div class="next"><a href="003_computedPropertiesWatchers.html">&gt;</a></div>
+		<div class="prev"><a href="004_classAndStyleBindings.html">&lt;</a></div>
+		<div class="next"><a href="006_listRendering.html">&gt;</a></div>
 		<div class="tests">
 			<div class="test-block exec">
 				<div class="desc">template syntax</div>
@@ -48,160 +48,200 @@
 				
 				<div class="test-block src">
 					<div class="desc">
-						Vue basic text interpolation
+						Use v-if - if condition will not be changed often
 					</div>
 					<textarea class="html" placeholder="Enter HTML">
-						<div id="example">
-							<span>Message: {{ msg }}</span>
+						<style>
+							[v-cloak] {
+							  display: none;
+							}
+						</style>
+						<div id="example" v-cloak>
+							<h1 v-if="awesome">Vue is awesome!</h1>
+							<h1 v-else>Oh no 😢</h1>
 						</div>
 					</textarea>
 					<textarea class="js" placeholder="Enter Test JavaScript">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
-							msg: 'the message'
+						    awesome: true
 						  }
 						})
 					</textarea>
 					<textarea class="test-console" placeholder="Enter Console CMD">
-						vm.msg = 'updated';</textarea>
-				</div>
-				
-				<div class="test-block src">
-					<div class="desc">
-						one-time interpolations by using the v-once directive
-					</div>
-					<textarea class="html" placeholder="Enter HTML">
-						<div id="example"
-							v-once>
-							<span>Message: {{ msg }}</span>
-						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
-						var vm = new Vue({
-						  el: '#example',
-						  data: {
-							msg: 'the message'
-						  }
-						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
-						// will not work since v-once
-						vm.msg = 'updated';</textarea>
-				</div>
-				
-				<div class="test-block src">
-					<div class="desc">
-						Using v-html directive to output real HTML
-					</div>
-					<textarea class="html" placeholder="Enter HTML">
-						<div id="example">
-							Using mustaches: 
-							<p>{{ rawHtml }}</p>
-							Using v-html directive:
-							<p v-html="rawHtml"></p>
-						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
-						var vm = new Vue({
-						  el: '#example',
-						  data: {
-							rawHtml: '<span style="color: red;">This should be red.</span>'
-						  }
-						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
-					
+						vm.awesome = false;
 					</textarea>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
-						Use v-bind to bind attributes
+						Use v-show - if will toggle it very often
 					</div>
 					<textarea class="html" placeholder="Enter HTML">
-						<div id="example">
-							<div v-bind:id="divID" v-bind:style="divStyle">{{msg}}</div>
-							<button v-bind:disabled="isButtonDisabled">testBtn</button>
+						<style>
+							[v-cloak] {
+							  display: none;
+							}
+						</style>
+						<div id="example" v-cloak>
+							<label>
+								Check it if you think Vue is awesome.
+								<input type="checkbox" v-model="awesome" />
+							</label>
+							<h1 v-show="awesome">Vue is awesome!</h1>
 						</div>
 					</textarea>
 					<textarea class="js" placeholder="Enter Test JavaScript">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
-						    divID: 'testID',
-							divStyle: 'color: red;',
-							msg: 'test msg',
-							isButtonDisabled: true
+						    awesome: true
 						  }
 						})
 					</textarea>
 					<textarea class="test-console" placeholder="Enter Console CMD">
-						vm.isButtonDisabled = false;
+						vm.awesome = false;
 					</textarea>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
-						JavaScript expressions inside data bindings
+						Use v-if with template to toggle more than one element
 					</div>
 					<textarea class="html" placeholder="Enter HTML">
 						<div id="example">
-							{{ number + 1 }}<br/>
-							{{ ok ? 'YES' : 'NO' }}<br/>
-							{{ message.replace('msg', 'abc') }}<br/>
-							<div v-bind:id="'list-' + id">div has id</div>
+							<template v-if="ok">
+							  <h1>Title</h1>
+							  <p>Paragraph 1</p>
+							  <p>Paragraph 2</p>
+							</template>
 						</div>
 					</textarea>
 					<textarea class="js" placeholder="Enter Test JavaScript">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
-						    id: 1,
-						    number: 2,
-							ok: true,
-							message: 'the msg'
+						    ok: true
 						  }
 						})
 					</textarea>
 					<textarea class="test-console" placeholder="Enter Console CMD">
-						var div = document.getElementById('list-1');
-						alert(div.innerHTML+' '+div.id);
+						vm.ok = false;
+					</textarea>
+				</div>
+				<div class="test-block src">
+					<div class="desc">
+						Use v-if, v-else-if, v-else
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<style>
+							[v-cloak] {
+							  display: none;
+							}
+						</style>
+						<div id="example" v-cloak>
+							<div v-if="type === 'A'">
+							  type is A
+							</div>
+							<div v-else-if="type === 'B'">
+							  type is B
+							</div>
+							<div v-else-if="type === 'C'">
+							  type is C
+							</div>
+							<div v-else>
+							  type is Not in A/B/C
+							</div>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    type: 'A'
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						vm.type = 'B'; // or 'C', 'D'
 					</textarea>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
-						Dynamic directive argument
+						Reusable Elements
 					</div>
 					<textarea class="html" placeholder="Enter HTML">
 						<div id="example">
-							{{changecolorevent}}
-							<span v-on:[changecolorevent]="changeColor" v-bind:style="{ color: color, fontSize: size}">Some Text</span> to change color
+							<template v-if="loginType === 'username'">
+							  <label>Username</label>
+							  <input placeholder="Enter your username" />
+							</template>
+							<template v-else>
+							  <label>Email</label>
+							  <input placeholder="Enter your email address" />
+							</template>
+							<button v-on:click="toggleLoginType">Toggle login type</button>
 						</div>
 					</textarea>
 					<textarea class="js" placeholder="Enter Test JavaScript">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
-						    color: 'green',
-							size: '22px',
-						    changecolorevent: 'mouseover'
+						    loginType: 'username'
 						  },
 						  methods: {
-						    changeColor: function (v) {
-							  if (this.color == 'green')
-							    this.color = 'blue';
-							  else
-							    this.color = 'green';
+							toggleLoginType: function () {
+							  return this.loginType = this.loginType === 'username' ? 'email' : 'username'
 							}
 						  }
 						})
 					</textarea>
 					<textarea class="test-console" placeholder="Enter Console CMD">
-						vm.changecolorevent = 'click';
+					  // type some text in input then click button
+					  // value will not disappear since
+					  // vue will reuse the input element
 					</textarea>
 				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Controlling Reusable Elements with key
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<template v-if="loginType === 'username'">
+							  <label>Username</label>
+							  <input placeholder="Enter your username" key="username-input">
+							</template>
+							<template v-else>
+							  <label>Email</label>
+							  <input placeholder="Enter your email address" key="email-input">
+							</template>
+							<button v-on:click="toggleLoginType">Toggle login type</button>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    loginType: 'username'
+						  },
+						  methods: {
+							toggleLoginType: function () {
+							  return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					  // type some text in input then click button
+					  // value will disappear since
+					  // vue will not reuse element with different key
+					</textarea>
+				</div>
+				
 <!--				
 				<div class="test-block src">
 					<div class="desc">
