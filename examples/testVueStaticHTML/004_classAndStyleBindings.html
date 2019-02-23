@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		
+		<link rel="stylesheet" href="codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="css/base.css" />
+		
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="js/underscore.js"></script>
+		
+		<script src="codemirror/lib/codemirror.js"></script>
+		<script src="codemirror/mode/javascript/javascript.js"></script>
+		<script src="codemirror/addon/hint/show-hint.js"></script>
+		<script src="codemirror/addon/hint/xml-hint.js"></script>
+		<script src="codemirror/addon/hint/html-hint.js"></script>
+		<script src="codemirror/mode/xml/xml.js"></script>
+		<script src="codemirror/mode/javascript/javascript.js"></script>
+		<script src="codemirror/mode/css/css.js"></script>
+		<script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="codemirror/mode/htmlembedded/htmlembedded.js"></script>
+		<script src="codemirror/addon/display/placeholder.js"></script>
+	</head>
+    <body>
+		<div class="tests">
+			<div class="test-block exec">
+				<div class="desc">template syntax</div>
+				<textarea class="html" placeholder="Enter HTML">
+					
+				</textarea>
+				<textarea class="js" placeholder="Enter Test JavaScript">
+					
+				</textarea>
+				try this Console CMD (input js then press Enter)
+				<textarea class="test-console" placeholder="Enter Console CMD"></textarea>
+			</div>
+			<div class="samples">
+				<div class="inst">Click to Select Sample</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						class bindings
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<style type="text/css" scoped>
+						  .active {
+							font-size: 22px;
+						  }
+						  .text-danger {
+							color: red;
+						  }
+						</style>
+
+						<div id="example">
+							<div
+							  class="static"
+							  v-bind:class="{ active: isActive, 'text-danger': hasError }">
+							  Some Text
+							</div>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    isActive: true,
+						    hasError: false
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					  vm.isActive = false;
+					  vm.hasError = true;
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						class object bindings
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<style type="text/css" scoped>
+						  .active {
+							font-size: 22px;
+						  }
+						  .text-danger {
+							color: red;
+						  }
+						</style>
+
+						<div id="example">
+							<div v-bind:class="classObject">
+							  Some Text
+							</div>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    classObject: {
+							  active: true,
+							  'text-danger': false
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					  vm.classObject.active = false;
+					  vm.classObject['text-danger'] = true;
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						class computed property bindings
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<style type="text/css" scoped>
+						  .active {
+							font-size: 22px;
+						  }
+						  .text-danger {
+							color: red;
+						  }
+						</style>
+
+						<div id="example">
+							<div v-bind:class="classObject">
+							  Some Text
+							</div>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    isActive: true,
+						    error: null
+						  },
+						  computed: {
+						    classObject: function () {
+							  return {
+							    active: this.isActive && !this.error,
+							    'text-danger': this.error && this.error.type === 'fatal'
+							  }
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					  vm.error = {type: 'fatal'}
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						class array bindings
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<style type="text/css" scoped>
+						  .active {
+							font-size: 22px;
+						  }
+						  .text-danger {
+							color: red;
+						  }
+						</style>
+
+						<div id="example">
+							<div v-bind:class="[isActive ? activeClass : '', errorClass]">
+							  Some Text
+							</div>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    isActive: true,
+						    activeClass: 'active',
+						    errorClass: 'text-danger'
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					  vm.isActive = false;
+					  /* or
+					  vm.activeClass = '';
+					  vm.errorClass = ''
+					  */
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+					  Class binding with component
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<style type="text/css" scoped>
+						  .baz {
+							font-size: 22px;
+						  }
+						  .boo {
+							color: blue;
+						  }
+						  .foo {
+						    text-align: center;
+						  }
+						  .bar {
+						    border: 1px solid #ccc;
+						  }
+						</style>
+						<div id="example">
+							<my-component class="baz boo"></my-component>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						Vue.component('my-component', {
+						  template: '<p class="foo bar">Hi</p>'
+						})
+						new Vue({ el: '#example' })
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					  alert(document.querySelectorAll('.foo')[0].classList);
+					</textarea>
+				</div>
+<!--				
+				<div class="test-block src">
+					<div class="desc">
+					
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {}
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+-->
+			</div>
+		</div>
+		<iframe id="iframe" frameBorder="0"></iframe>
+		<script>
+			function writeIframe (html) {
+				if (!html) return;
+				var win = document.getElementById('iframe').contentWindow,
+					doc = win.document;
+				doc.open();
+				doc.write(html);
+				doc.close();
+			}
+			function evalJSInIframe (js) {
+				if (!js) return;
+				var win = document.getElementById('iframe').contentWindow;
+				var doc = win.document;
+				var s = doc.createElement('script');
+				s.src = 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js';
+				s.onload = function () {
+					win.eval(js);
+				}
+				doc.head.appendChild(s);
+			}
+		</script>
+		<script>
+			var htmlCM,
+				jsCM,
+				consoleCM;
+			function _exec (ta) {
+				console.log('_exec');
+				$('#iframe').remove();
+				$('body').append('<iframe id="iframe" frameBorder="0"></iframe>');
+				try {
+					var html = htmlCM.getValue(),
+						js = jsCM.getValue();
+					console.log(html);
+					console.log(js);
+					writeIframe(html);
+					evalJSInIframe(js);
+				} catch (e) {console.log(e);}
+			}
+			window.onload = function () {
+				var cmds = [], curr = 0;
+				var exec = _.debounce(function (cm) {
+						try {
+							var ta = cm.getTextArea();
+							ta.value = cm.getValue();
+							_exec(ta);
+						} catch (e) {}
+					}, 500),
+					cmd = function (cm, evt) {
+						try {
+							// ArrowUp, ArrowDown, Enter
+							var key = evt.key,
+								pos = cm.getCursor(),
+								ta = cm.getTextArea();
+							if ( (pos.outside || !cm.getValue()) && key=='ArrowUp' && curr>0) {
+								curr--;
+								cm.setValue(cmds[curr]);
+								cm.setCursor(0, 1);
+							}
+							if ( (pos.outside || !cm.getValue()) && key=='ArrowDown' && curr<cmds.length-1) {
+								curr++;
+								cm.setValue(cmds[curr]);
+								cm.setCursor(0, cmds[curr].length-1);
+							}
+							if (key=='Enter' && !evt.shiftKey) {
+								var js = ta.value;
+								console.log(js);
+								if (js) {
+									cmds.push(js);
+									curr = cmds.length;
+									cm.setValue('');
+									document.getElementById('iframe').contentWindow.eval(js);
+								}
+							}
+							ta.value = cm.getValue();
+						} catch (e) {}
+					};
+				$('.test-block.exec textarea.html').each(function () {
+					var htmlTextarea = $(this);
+					htmlCM = CodeMirror.fromTextArea(htmlTextarea[0], {mode: "htmlmixed"});
+					htmlCM.on('keyup', exec);
+					htmlCM.on('focus', exec);
+					console.log(htmlCM);
+				});
+				$('.test-block.exec textarea.js').each(function () {
+					var jsTextarea = $(this);
+					jsCM = CodeMirror.fromTextArea(jsTextarea[0], {mode: "javascript"});
+					jsCM.on('keyup', exec);
+					jsCM.on('focus', exec);
+				});
+				$('.test-block.exec textarea.test-console').each(function () {
+					var jsTextarea = $(this);
+					consoleCM = CodeMirror.fromTextArea(jsTextarea[0], {mode: "javascript"});
+					consoleCM.on('keyup', cmd);
+				});
+				
+				$('.samples .inst').on('click', function () {
+					$('.samples').toggleClass('open');
+				});
+				
+				function applyValue (cm, val) {
+					val = val || '';
+					val = val.replace(/\t\t\t\t\t/g, ' ');
+					cm.setValue(val);
+					cm.getTextArea().value = val;
+				}
+				
+				function _applyTest ($desc) {
+					$('.samples').removeClass('open');
+					var $block = $desc.closest('.test-block');
+					applyValue(htmlCM, $block.find('textarea.html').val());
+					applyValue(jsCM, $block.find('textarea.js').val());
+					applyValue(consoleCM, $block.find('textarea.test-console').val());
+					$('.test-block.exec .desc').html($desc.html());
+					_exec(htmlCM.getTextArea());
+				}
+				function applyTest (e) {
+					_applyTest($(e.target));
+				}
+				$('.test-block.src .desc').on('click', applyTest);
+				_applyTest($('.test-block.src .desc').eq(0));
+            }
+		</script>
+	</body>
+</html>

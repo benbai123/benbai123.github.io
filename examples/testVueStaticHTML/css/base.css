@@ -1,0 +1,59 @@
+html, body { height:100%; }
+body {
+	white-space: nowrap;
+	word-wrap: normal;
+}
+.tests {
+	display: inline-block;
+	width: 50%;
+	vertical-align: top;
+	position: relative;
+	padding-top: 2em;
+}
+.tests .samples {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 1.2em;
+	padding: 5px;
+	width: 100%;
+	overflow: hidden;
+	background-color: #ccc;
+	cursor: pointer;
+	z-index: 999;
+}
+.tests .samples.open {
+	height: auto;
+}
+.test-block {
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+.test-block.src textarea {
+	display: none;
+}
+.desc {
+	color: blue;
+	line-height: 2em;
+}
+.exec .desc {
+	white-space: normal;
+}
+.ccmd {
+	color: green;
+	line-height: 2em;
+}
+#iframe {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	vertical-align: top;
+}
+
+.CodeMirror,
+.CodeMirror-scroll {
+  border: 1px solid #eee;
+  height: auto;
+  max-height: 200px;
+  font-size: 16px;
+}
