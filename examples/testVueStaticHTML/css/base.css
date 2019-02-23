@@ -5,18 +5,25 @@ body {
 }
 .prev,
 .next {
-	padding: 5px;
+	padding: 2px 10px;
 	font-size: 36px;
-	z-index: 999;
+	z-index: 999999;
 	opacity: 0.6;
 	position: fixed;
-	top: 48%;
+	top: 0;
+	transition: all .2s ease-in-out;
+	background-color: cyan;
+	border-radius: 7px;
 }
 .prev {
-	left: 0;
+	left: 30%;
 }
 .next {
-	right: 0;
+	left: 40%;
+}
+.prev:hover,
+.next:hover {
+  transform: scale(2);
 }
 .prev a,
 .next a {
