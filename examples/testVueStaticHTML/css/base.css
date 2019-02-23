@@ -3,6 +3,27 @@ body {
 	white-space: nowrap;
 	word-wrap: normal;
 }
+.prev,
+.next {
+	padding: 5px;
+	font-size: 36px;
+	z-index: 999;
+	opacity: 0.6;
+	position: fixed;
+	top: 48%;
+}
+.prev {
+	left: 0;
+}
+.next {
+	right: 0;
+}
+.prev a,
+.next a {
+	text-decoration: none;
+	color: orange;
+	font-weight: bold;
+}
 .tests {
 	display: inline-block;
 	width: 50%;
