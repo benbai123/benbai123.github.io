@@ -21,14 +21,11 @@ var htmlCM,
 	jsCM,
 	consoleCM;
 function _exec (ta) {
-	console.log('_exec');
 	$('#iframe').remove();
 	$('body').append('<iframe id="iframe" frameBorder="0"></iframe>');
 	try {
 		var html = htmlCM.getValue(),
 			js = jsCM.getValue();
-		console.log(html);
-		console.log(js);
 		writeIframe(html);
 		evalJSInIframe(js);
 	} catch (e) {console.log(e);}
@@ -57,12 +54,15 @@ window.onload = function () {
 				if ( (pos.outside || !cm.getValue()) && key=='ArrowDown' && curr<cmds.length-1) {
 					curr++;
 					cm.setValue(cmds[curr]);
-					cm.setCursor(0, cmds[curr].length-1);
+					cm.setCursor(cm.lineCount()-1, 1);
 				}
 				if (key=='Enter' && !evt.shiftKey) {
 					var js = ta.value;
-					console.log(js);
 					if (js) {
+						var suffix = '\n//';
+						if (js.indexOf(suffix, js.length - suffix.length) === -1) {
+							js += suffix;
+						}
 						cmds.push(js);
 						curr = cmds.length;
 						cm.setValue('');
@@ -70,14 +70,13 @@ window.onload = function () {
 					}
 				}
 				ta.value = cm.getValue();
-			} catch (e) {}
+			} catch (e) {console.error(e);}
 		};
 	$('.test-block.exec textarea.html').each(function () {
 		var htmlTextarea = $(this);
 		htmlCM = CodeMirror.fromTextArea(htmlTextarea[0], {mode: "htmlmixed"});
 		htmlCM.on('keyup', exec);
 		htmlCM.on('focus', exec);
-		console.log(htmlCM);
 	});
 	$('.test-block.exec textarea.js').each(function () {
 		var jsTextarea = $(this);
@@ -103,8 +102,9 @@ window.onload = function () {
 	}
 	
 	function _applyTest ($desc) {
-		$('.samples').removeClass('open');
+		$('.test-block.src.applied').removeClass('applied');
 		var $block = $desc.closest('.test-block');
+		$block.addClass('applied');
 		applyValue(htmlCM, $block.find('textarea.html').val());
 		applyValue(jsCM, $block.find('textarea.js').val());
 		applyValue(consoleCM, $block.find('textarea.test-console').val());
@@ -112,8 +112,37 @@ window.onload = function () {
 		_exec(htmlCM.getTextArea());
 	}
 	function applyTest (e) {
+		$('.samples').removeClass('open');
 		_applyTest($(e.target));
 	}
 	$('.test-block.src .desc').on('click', applyTest);
 	_applyTest($('.test-block.src .desc').eq(0));
+	$('body').on('keyup', function (e) {
+		if (e.ctrlKey && e.altKey
+			&& (e.key == 'ArrowUp' || e.keyCode == 38)) {
+			e.preventDefault();
+			if ($('.test-block.src.applied')[0] && $('.test-block.src')[0]
+				&& $('.test-block.src.applied')[0] != $('.test-block.src')[0]) {
+				_applyTest($('.test-block.src.applied').prev('.test-block.src').find('.desc').eq(0));
+			}
+		}
+		if (e.ctrlKey && e.altKey
+			&& (e.key == 'ArrowDown' || e.keyCode == 40)) {
+			e.preventDefault();
+			if ($('.test-block.src.applied')[0] && $('.test-block.src').last()[0]
+				&& $('.test-block.src.applied')[0] != $('.test-block.src').last()[0]) {
+				_applyTest($('.test-block.src.applied').next('.test-block.src').find('.desc').eq(0));
+			}
+		}
+		if (e.ctrlKey && e.altKey
+			&& (e.key == 'Home' || e.keyCode == 36)) {
+			e.preventDefault();
+			_applyTest($('.test-block.src .desc').eq(0));
+		}
+		if (e.ctrlKey && e.altKey
+			&& (e.key == 'End' || e.keyCode == 35)) {
+			e.preventDefault();
+			_applyTest($('.test-block.src .desc').last());
+		}
+	});
 }
