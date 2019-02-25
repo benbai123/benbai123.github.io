@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+		
+		<link rel="stylesheet" href="codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="css/base.css" />
+		
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="js/underscore.js"></script>
+		
+		<script src="codemirror/lib/codemirror.js"></script>
+		<script src="codemirror/mode/javascript/javascript.js"></script>
+		<script src="codemirror/addon/hint/show-hint.js"></script>
+		<script src="codemirror/addon/hint/xml-hint.js"></script>
+		<script src="codemirror/addon/hint/html-hint.js"></script>
+		<script src="codemirror/mode/xml/xml.js"></script>
+		<script src="codemirror/mode/javascript/javascript.js"></script>
+		<script src="codemirror/mode/css/css.js"></script>
+		<script src="codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="codemirror/mode/htmlembedded/htmlembedded.js"></script>
+		<script src="codemirror/addon/display/placeholder.js"></script>
+	</head>
+    <body>
+		<div class="prev"><a href="007_eventHandling.html">&lt;</a></div>
+		<div class="next"><a href="008_formBindings.html">&gt;</a></div>
+		<div class="tests">
+			<div class="test-block exec">
+				<div class="desc">template syntax</div>
+				<textarea class="html" placeholder="Enter HTML">
+					
+				</textarea>
+				<textarea class="js" placeholder="Enter Test JavaScript">
+					
+				</textarea>
+				try this Console CMD (input js then press Enter)
+				<textarea class="test-console" placeholder="Enter Console CMD"></textarea>
+			</div>
+			<div class="samples">
+				<div class="inst">Click to Select Sample</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Basic Usage
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							v-model internally uses different properties and emits different events for different input elements:
+							<br/>
+							text and textarea elements use value property and input event;<br/>
+							checkboxes and radiobuttons use checked property and change event;<br/>
+							select fields use value as a prop and change as an event.<br/>
+							<br/>
+							<input v-model="message" placeholder="edit me" />
+							<p>Message is: {{ message }}</p>
+							
+							<br/><br/>
+							<span>Multiline message is:</span>
+							<p style="white-space: pre-line;">{{ mmsg }}</p>
+							<br/>
+							<textarea v-model="mmsg" placeholder="add multiple lines">&lt;/textarea&gt;
+							
+							<br/><br/>
+							Checkbox:<br/>
+							<input type="checkbox" id="checkbox" v-model="checked">
+							<label for="checkbox">{{ checked }}</label>
+							
+							<br/><br/>
+							Multiple Checkbox:<br/>
+							<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+							<label for="jack">Jack</label>
+							<input type="checkbox" id="john" value="John" v-model="checkedNames">
+							<label for="john">John</label>
+							<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+							<label for="mike">Mike</label>
+							<br />
+							<span>Checked names: {{ checkedNames }}</span>
+
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    message: '',
+							mmsg: '',
+							checked: true,
+							checkedNames: ["John", "Mike"]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Basic Usage 2
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							Radio:<br/>
+							<input type="radio" id="one" value="One" v-model="picked">
+							<label for="one">One</label>
+							<br>
+							<input type="radio" id="two" value="Two" v-model="picked">
+							<label for="two">Two</label>
+							<br>
+							<span>Picked: {{ picked }}</span>
+							
+							<br/><br/>
+							Single select:<br/>
+							<select v-model="selected">
+							  <option disabled value="">Please select one</option>
+							  <option>A</option>
+							  <option>B</option>
+							  <option>C</option>
+							</select>
+							<span>Selected: {{ selected }}</span>
+							
+							<br/><br/>
+							Single select:<br/>
+							<select v-model="multiSelected" multiple>
+							  <option>A</option>
+							  <option>B</option>
+							  <option>C</option>
+							</select>
+							<br>
+							<span>Selected: {{ multiSelected }}</span>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    picked: '',
+							selected: '',
+							multiSelected: ['B', 'C']
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Dynamic options rendered with v-for
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<select v-model="selected">
+							  <option v-for="option in options" v-bind:value="option.value">
+								{{ option.text }}
+							  </option>
+							</select>
+							<span>Selected: {{ selected }}</span>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+							selected: 'A',
+							options: [
+							  { text: 'One', value: 'A' },
+							  { text: 'Two', value: 'B' },
+							  { text: 'Three', value: 'C' }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Value Bindings
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							true -> yes, false -> no<br/>
+							<input
+							  type="checkbox"
+							  v-model="toggle"
+							  true-value="yes"
+							  false-value="no"
+							/><br/>
+							toggled? {{ toggle }}
+							
+							<br/><br/>
+							Radio bindings to object<br/>
+							<input type="radio" v-model="picked" v-bind:value="items.a" /> apple
+							<input type="radio" v-model="picked" v-bind:value="items.b" />pork<br/>
+							picked: {{ picked }}
+							
+							<br/><br/>
+							Select Options Bindings<br/>
+							<select v-model="selected">
+							  <!-- inline object literal -->
+							  <option v-bind:value="items.a">{{items.a.name}}</option>
+							  <option v-bind:value="items.b">{{items.b.name}}</option>
+							</select>
+							<br/>
+							selected: {{ selected }}
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+							toggle: 'no',
+							picked: null,
+							selected: null,
+							items: {
+							  a: {type: 'fruit', name: 'apple'},
+							  b: {type: 'meet', name: 'pork'}
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Modifiers
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							The input sync model while typing<br/>
+							<input v-model="msg" /><br/>
+							{{ msg }}
+							
+							<br/><br/>
+							The input sync model after change (press enter or tab after input)<br/>
+							<input v-model.lazy="msg2" /><br/>
+							{{ msg2 }}
+							
+							<br/><br/>
+							The input value is a string<br/>
+							<input type="number" v-model="msg3" /><br/>
+							val+10 = {{ msg3+10 }}
+							
+							<br/><br/>
+							The input value is a number<br/>
+							<input type="number" v-model.number="msg4" /><br/>
+							val+10 = {{ msg4+10 }}
+							
+							<br/><br/>
+							The input value has space both side<br/>
+							<input v-model="msg5" /><br/>
+							{{ realmsg5 }}
+							<br/><br/>
+							The input value has no both side (in vm)<br/>
+							<input v-model.trim="msg6" /><br/>
+							{{ realmsg6 }}
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    msg: '',
+							msg2: '',
+							msg3: '',
+							msg4: null,
+							msg5: '',
+							msg6: ''
+						  },
+						  computed: {
+						    realmsg5: function () {
+							  return this.msg5.replace(/ /g, '&nbsp;');
+							},
+							realmsg6: function () {
+							  return this.msg6.replace(/ /g, '&nbsp;');
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+				
+<!--				
+				<div class="test-block src">
+					<div class="desc">
+					
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {}
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
+-->
+			</div>
+		</div>
+		<iframe id="iframe" frameBorder="0"></iframe>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>

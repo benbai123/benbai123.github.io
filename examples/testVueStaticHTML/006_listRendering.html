@@ -30,7 +30,7 @@
 	</head>
     <body>
 		<div class="prev"><a href="005_conditional.html">&lt;</a></div>
-		<div class="next"><a href="006_listRendering.html">&gt;</a></div>
+		<div class="next"><a href="007_eventHandling.html">&gt;</a></div>
 		<div class="tests">
 			<div class="test-block exec">
 				<div class="desc">template syntax</div>
@@ -139,6 +139,523 @@
 					</textarea>
 				</div>
 				
+				<div class="test-block src">
+					<div class="desc">
+						Use key to maintain correct order of children
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <li v-for="item in items">
+								{{ item.message }}
+								<input />
+							  </li>
+							</ul>
+							Add unique key to maintain correct order of children
+							<ul>
+							  <li v-for="item of items" :key="item.id">
+								{{ item.message }}
+								<input />
+							  </li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							items: [
+							  { message: 'Foo', id: 0 },
+							  { message: 'Bar', id: 1 },
+							  { message: 'Foz', id: 2 },
+							  { message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						/*
+						 * input some value to each input element
+						 * then run the line below that
+						 * will insert a new item at 2nd position
+						 * you'll find the order of input elements
+						 * in first list are wrong
+						 */
+						vm.items.splice(1, 0, { message: 'the inserted item', id: 4 });
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Mutation Methods - push() pop() shift() unshift() splice() sort() reverse()
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <li v-for="item of items" :key="item.id">
+								{{ item.message }}
+								<input />
+							  </li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							items: [
+							  { message: 'Foo', id: 0 },
+							  { message: 'Bar', id: 1 },
+							  { message: 'Foz', id: 2 },
+							  { message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						setTimeout(function () {vm.items.pop()}, 1000);
+						setTimeout(function () {vm.items.shift()}, 2000);
+						setTimeout(function () {vm.items.push(
+							{ message: 'Boo 2', id: 4 }
+						)}, 3000);
+						setTimeout(function () {vm.items.unshift(
+							{ message: 'Foo 2', id: 5 }
+						)}, 4000);
+						setTimeout(function () {vm.items.sort(function (a, b) {
+							return b.id-a.id;
+						})}, 5000);
+						setTimeout(function () {vm.items.reverse()}, 6000);
+						setTimeout(function () {vm.items.splice(1, 2)}, 7000);
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Replacing an Array - filter() concat() slice()
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <li v-for="item of items" :key="item.id">
+								{{ item.message }}
+								<input />
+							  </li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							items: [
+							  { message: 'Foo', id: 0 },
+							  { message: 'Bar', id: 1 },
+							  { message: 'Foz', id: 2 },
+							  { message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						/*
+						 * input some value to each input element
+						 * then run the command below
+						 * you will find some input keep its value unchanged
+						 */
+						setTimeout(function () {
+							vm.items = vm.items.filter(function (ele) {
+								return ele.id != 0 && ele.id != 3;
+							});
+						}, 1000);
+						setTimeout(function () {
+							vm.items = [{ message: 'Bar', id: 4 }].concat(vm.items).concat(
+							[{ message: 'Foo 2', id: 5 }, { message: 'Boo 2', id: 6 }]
+							);
+						}, 2000);
+						setTimeout(function () {
+							vm.items = vm.items.slice(1, 4);
+						}, 3000);
+					</textarea>
+				</div>
+				<div class="test-block src">
+					<div class="desc">
+						Caveats - Vue cannot detect the following changes to an array: directly set an item with the index or modify the length of the array
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <li v-for="item of items" :key="item.id">
+								{{ item.message }}
+								<input />
+							  </li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							items: [
+							  { message: 'Foo', id: 0 },
+							  { message: 'Bar', id: 1 },
+							  { message: 'Foz', id: 2 },
+							  { message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						// not works
+						vm.items[1] = { message: 'Bar 2', id: 1 };
+						// not works
+						vm.items.length = 3;
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						To overcome the Caveats above
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <li v-for="item of items" :key="item.id">
+								{{ item.message }}
+								<input />
+							  </li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							items: [
+							  { message: 'Foo', id: 0 },
+							  { message: 'Bar', id: 1 },
+							  { message: 'Foz', id: 2 },
+							  { message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						// works
+						Vue.set(vm.items, 1, { message: 'Bar 2', id: 1 })
+						/*
+						 * or
+						 * vm.items.splice(2, 1, { message: 'Foz 2', id: 2 })
+						 * vm.$set(vm.items, 3, { message: 'Boo 2', id: 3 })
+						 */
+						// works
+						// vm.items.splice(3)
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Object Change Detection Caveats
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							{{ a }}<br/>
+							{{ b }}<br/><!-- cause error -->
+							{{ userProfile.name }}<br/>
+							{{ userProfile.age }}
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							a: 1,
+							userProfile: {
+							  name: 'Anika'
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						// no effect
+						vm.b = 2;
+						vm.userProfile.age = 20;
+						// cause error
+						// Vue.set(vm, 'b', 2)
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						You could add a new age property to the nested userProfile object
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							{{ userProfile.name }}<br/>
+							<span v-if="userProfile.age">{{ userProfile.age }} years old</span><br/>
+							<span v-if="userProfile.weight">{{ userProfile.weight }} KG</span><br/>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							a: 1,
+							userProfile: {
+							  name: 'Anika'
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						Vue.set(vm.userProfile, 'age', 27)
+						vm.$set(vm.userProfile, 'weight', 80)
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Object.assign()
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							{{ userProfile.name }}<br/>
+							<span v-if="userProfile.age">{{ userProfile.age }} years old</span><br/>
+							<span v-if="userProfile.weight">{{ userProfile.weight }} KG</span><br/>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							a: 1,
+							userProfile: {
+							  name: 'Anika'
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						// not works
+						/*
+						Object.assign(vm.userProfile, {
+						  age: 27,
+						  weight: 80
+						})
+						*/
+						// works
+						vm.userProfile = Object.assign({}, vm.userProfile, {
+						  age: 27,
+						  weight: 80
+						})
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Displaying Filtered/Sorted Results
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							use computed properties
+							<ul>
+							  <li v-for="n in orderedEvenNumbers">{{ n }}</li>
+							</ul>
+							use methods
+							<ul>
+							  <li v-for="n in orderedEven(numbers)">{{ n }}</li>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    numbers: [ 3, 4, 5, 1, 2 ]
+						  },
+						  computed: {
+						    orderedEvenNumbers: function () {
+							  return this.numbers.filter(function (number) {
+							    return number % 2 === 0
+							  }).sort()
+						    }
+						  },
+						  methods: {
+						    orderedEven: function (numbers) {
+							  return numbers.filter(function (number) {
+							    return number % 2 === 0
+							  }).sort()
+						    }
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						v-for with a Range
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<span v-for="n in 10">{{ n }} </span>
+							<br />
+							<span v-for="n in max">{{ n }} </span>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+						    max: 3
+						  },
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						vm.max=5;
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						v-for on a &lt;template&gt;
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<ul>
+							  <template v-for="item in items">
+								<li>{{ item.message }}</li>
+								<li class="divider" role="presentation">presentation for {{item}}</li>
+							  </template>
+							</ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							items: [
+							  { message: 'Foo', id: 0 },
+							  { message: 'Bar', id: 1 },
+							  { message: 'Foz', id: 2 },
+							  { message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						v-for with v-if
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<!--
+							When they exist on the same node, v-for has a higher priority than v-if. That means the v-if will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only some items
+							
+							If instead, your intent is to conditionally skip execution of the loop, you can place the v-if on a wrapper element (or <template>). For example:
+						-->
+						<div id="example">
+							<ul v-if="todos.length">
+							  <li v-for="todo in todos" v-if="!todo.isComplete">
+							    {{ todo.message }}
+							  </li>
+							</ul>
+							<p v-else>No todos left!</p>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						var vm = new Vue({
+						  el: '#example',
+						   data: {
+							todos: [
+							  { isComplete: false, message: 'Foo', id: 0 },
+							  { isComplete: false, message: 'Bar', id: 1 },
+							  { isComplete: false, message: 'Foz', id: 2 },
+							  { isComplete: false, message: 'Boo', id: 3 }
+							]
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+						vm.todos[0].isComplete = true;
+						// then vm.todos = [];
+					</textarea>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						v-for with a Component
+					</div>
+					<textarea class="html" placeholder="Enter HTML">
+						<div id="example">
+							<form v-on:submit.prevent="addNewTodo">
+							  <label for="new-todo">Add a todo</label>
+							  <input
+							    v-model="newTodoText"
+							    id="new-todo"
+							    placeholder="E.g. Feed the cat">
+							  <button>Add</button>
+						    </form>
+						    <ul>
+							  <li is="todo-item"
+							    v-for="(todo, index) in todos"
+							    v-bind:key="todo.id"
+								v-bind:id="todo.id"
+							    v-bind:title="todo.title"
+							    v-on:removetodo="todos.splice(index, 1)">
+							  </li>
+						    </ul>
+						</div>
+					</textarea>
+					<textarea class="js" placeholder="Enter Test JavaScript">
+						Vue.component('todo-item', {
+						  template: [
+						    '<li>{{ id }} - {{ title }}',
+							  '<button v-on:click="$emit(\'removetodo\')">Remove</button>',
+							'</li>'].join(''),
+						  props: ['title', 'id']
+						})
+
+						new Vue({
+						  el: '#example',
+						  data: {
+							newTodoText: '',
+							todos: [
+							  {
+								id: 1,
+								title: 'Do the dishes',
+							  },
+							  {
+								id: 2,
+								title: 'Take out the trash',
+							  },
+							  {
+								id: 3,
+								title: 'Mow the lawn'
+							  }
+							],
+							nextTodoId: 4
+						  },
+						  methods: {
+							addNewTodo: function () {
+							  this.todos.push({
+								id: this.nextTodoId++,
+								title: this.newTodoText
+							  })
+							  this.newTodoText = ''
+							}
+						  }
+						})
+					</textarea>
+					<textarea class="test-console" placeholder="Enter Console CMD">
+					
+					</textarea>
+				</div>
 <!--				
 				<div class="test-block src">
 					<div class="desc">
