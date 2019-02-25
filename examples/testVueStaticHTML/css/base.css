@@ -50,6 +50,9 @@ body {
 	cursor: pointer;
 	z-index: 999;
 }
+.inst {
+	margin-bottom: 0.5em;
+}
 .tests .samples.open {
 	height: auto;
 }
@@ -66,6 +69,9 @@ body {
 }
 .exec .desc {
 	white-space: normal;
+}
+.test-block.src.applied .desc {
+	background-color: #EEE;
 }
 .ccmd {
 	color: green;
