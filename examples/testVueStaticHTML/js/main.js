@@ -1,36 +1,38 @@
-function writeIframe (html) {
-	if (!html) return;
-	var win = document.getElementById('iframe').contentWindow,
-		doc = win.document;
-	doc.open();
-	doc.write(html);
-	doc.close();
-}
-function evalJSInIframe (js) {
-	if (!js) return;
-	var win = document.getElementById('iframe').contentWindow;
-	var doc = win.document;
-	var s = doc.createElement('script');
-	s.src = 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js';
-	s.onload = function () {
-		win.eval(js);
-	}
-	doc.head.appendChild(s);
-}
+
 var htmlCM,
 	jsCM,
 	consoleCM;
-function _exec (ta) {
-	$('#iframe').remove();
-	$('body').append('<iframe id="iframe" frameBorder="0"></iframe>');
-	try {
-		var html = htmlCM.getValue(),
-			js = jsCM.getValue();
-		writeIframe(html);
-		evalJSInIframe(js);
-	} catch (e) {console.log(e);}
-}
 window.onload = function () {
+	function writeIframe (html) {
+		if (!html) return;
+		var win = document.getElementById('iframe').contentWindow,
+			doc = win.document;
+		doc.open();
+		doc.write(html);
+		doc.close();
+	}
+	function evalJSInIframe (js) {
+		if (!js) return;
+		var win = document.getElementById('iframe').contentWindow;
+		var doc = win.document;
+		var s = doc.createElement('script');
+		s.src = 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js';
+		s.onload = function () {
+			win.eval(js);
+		}
+		$(doc).on('keyup', keyEvantHandler);
+		doc.head.appendChild(s);
+	}
+	function _exec (ta) {
+		$('#iframe').remove();
+		$('body').append('<iframe id="iframe" frameBorder="0"></iframe>');
+		try {
+			var html = htmlCM.getValue(),
+				js = jsCM.getValue();
+			writeIframe(html);
+			evalJSInIframe(js);
+		} catch (e) {console.log(e);}
+	}
 	var cmds = [], curr = 0;
 	var exec = _.debounce(function (cm) {
 			$('.samples').removeClass('open');
@@ -96,18 +98,25 @@ window.onload = function () {
 	
 	function applyValue (cm, val) {
 		val = val || '';
-		val = val.replace(/\t\t\t\t\t/g, ' ');
+		val = val.replace(/\t\t\t\t\t/g, ' ').replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 		cm.setValue(val);
 		cm.getTextArea().value = val;
 	}
 	
 	function _applyTest ($desc) {
 		$('.test-block.src.applied').removeClass('applied');
-		var $block = $desc.closest('.test-block');
+		var $block = $desc.closest('.test-block'),
+			js = $block.find('div.js script')[0]?
+				$block.find('div.js script').html()
+				: $block.find('div.js').html(),
+			cmd = $block.find('div.test-console script')[0]?
+				$block.find('div.test-console script').html()
+				: $block.find('div.test-console').html();
 		$block.addClass('applied');
-		applyValue(htmlCM, $block.find('textarea.html').val());
-		applyValue(jsCM, $block.find('textarea.js').val());
-		applyValue(consoleCM, $block.find('textarea.test-console').val());
+		applyValue(htmlCM, $block.find('div.html').html());
+		applyValue(jsCM, js);
+		applyValue(consoleCM, cmd);
 		$('.test-block.exec .desc').html($desc.html());
 		_exec(htmlCM.getTextArea());
 	}
@@ -117,7 +126,17 @@ window.onload = function () {
 	}
 	$('.test-block.src .desc').on('click', applyTest);
 	_applyTest($('.test-block.src .desc').eq(0));
-	$('body').on('keyup', function (e) {
+	function keyEvantHandler (e) {
+		if (e.ctrlKey && e.altKey
+			&& (e.key == 'ArrowLeft' || e.keyCode == 37)) {
+			e.preventDefault();
+			$('.prev a')[0].click();
+		}
+		if (e.ctrlKey && e.altKey
+			&& (e.key == 'ArrowRight' || e.keyCode == 39)) {
+			e.preventDefault();
+			$('.next a')[0].click();
+		}
 		if (e.ctrlKey && e.altKey
 			&& (e.key == 'ArrowUp' || e.keyCode == 38)) {
 			e.preventDefault();
@@ -144,5 +163,6 @@ window.onload = function () {
 			e.preventDefault();
 			_applyTest($('.test-block.src .desc').last());
 		}
-	});
+	}
+	$('body').on('keyup', keyEvantHandler);
 }
