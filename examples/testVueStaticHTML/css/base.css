@@ -60,7 +60,9 @@ body {
 	margin-bottom: 10px;
 	font-size: 16px;
 }
-.test-block.src textarea {
+.test-block.src .html,
+.test-block.src .js,
+.test-block.src .test-console {
 	display: none;
 }
 .desc {
@@ -90,5 +92,4 @@ body {
   height: auto;
   max-height: 500px;
   font-size: 16px;
-  white-space: normal;
 }
