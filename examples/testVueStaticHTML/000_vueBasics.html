@@ -29,7 +29,7 @@
 		<script src="codemirror/addon/display/placeholder.js"></script>
 	</head>
     <body>
-		<div class="prev"></div>
+		<div class="prev"><a href="000_vueBasics.html">&lt;</a></div>
 		<div class="next"><a href="001_vueInstance.html">&gt;</a></div>
 		<div class="tests">
 			<div class="test-block exec">
@@ -40,72 +40,72 @@
 				<textarea class="js" placeholder="Enter Test JavaScript">
 					
 				</textarea>
-				try this Console CMD
+				try this Console CMD (input js then press Enter)
 				<textarea class="test-console" placeholder="Enter Console CMD"></textarea>
 			</div>
 			<div class="samples">
 				<div class="inst">Click to Select Sample</div>
 				<div class="test-block src">
 					<div class="desc">template syntax</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app">
 						  {{ message }}
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var app = new Vue({
 						  el: '#app',
 						  data: {
 							message: 'Hello Vue!'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">app.message=123;</textarea>
+					</div>
+					<div class="test-console">app.message=123;</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">use v-bind to bind attributes of html tag</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app-2">
 						  <span v-bind:title="message">
 							Hover your mouse over me for a few seconds
 							to see my dynamically bound title!
 						  </span>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var app2 = new Vue({
 						  el: '#app-2',
 						  data: {
 							message: 'You loaded this page on ' + new Date().toLocaleString()
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">app2.message='You loaded this page on '
-						+ new Date().toLocaleString();</textarea>
+					</div>
+					<div class="test-console">app2.message='You loaded this page on '
+						+ new Date().toLocaleString();</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">Use v-if to do condition rendering</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app-3">
 						  <span v-if="seen">Now you see me</span>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var app3 = new Vue({
 						  el: '#app-3',
 						  data: {
 							seen: true
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">app3.seen=false;</textarea>
+					</div>
+					<div class="test-console">app3.seen=false;</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">use v-for to generate list</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app-4">
 						  <ol>
 							<li v-for="todo in todos">
@@ -113,8 +113,8 @@
 							</li>
 						  </ol>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var app4 = new Vue({
 						  el: '#app-4',
 						  data: {
@@ -125,19 +125,19 @@
 							]
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">app4.todos.push({text: 'pushed text'});</textarea>
+					</div>
+					<div class="test-console">app4.todos.push({text: 'pushed text'});</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">use v-on to attach event listeners that invoke methods on our Vue instances </div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app-5">
 						  <p>{{ message }}</p>
 						  <button v-on:click="reverseMessage">Reverse Message</button>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var app5 = new Vue({
 						  el: '#app-5',
 						  data: {
@@ -152,34 +152,34 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">app5.setMessage('abc123');
-					app5.reverseMessage();</textarea>
+					</div>
+					<div class="test-console">app5.setMessage('abc123');
+					app5.reverseMessage();</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">use v-model to make two-way binding</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app-6">
 						  <p>{{ message }}</p>
 						  <input v-model="message">
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var app6 = new Vue({
 						  el: '#app-6',
 						  data: {
 							message: 'Hello Vue!'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">document.querySelector('#app-6 > input').value = 123;
-					document.querySelector('#app-6 > input').dispatchEvent(new Event('input'));</textarea>
+					</div>
+					<div class="test-console">document.querySelector('#app-6 > input').value = 123;
+					document.querySelector('#app-6 > input').dispatchEvent(new Event('input'));</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">Vue Component</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="app-7">
 						  <ol>
 							<!--
@@ -195,8 +195,8 @@
 							></todo-item>
 						  </ol>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						Vue.component('todo-item', {
 						  props: ['todo'],
 						  template: '<li>{{ todo.text }}</li>'
@@ -212,7 +212,7 @@
 							]
 						  }
 						})
-					</textarea>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -50,36 +50,36 @@
 					<div class="desc">
 						Listening to Events
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<button v-on:click="counter += 1">Add 1</button>
 							<p>The button above has been clicked {{ counter }} times.</p>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
 							counter: 0
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Method Event Handlers
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<!-- `greet` is the name of a method defined below -->
 							<button v-on:click="greet">Greet</button>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -97,23 +97,23 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.greet()
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Methods in Inline Handlers
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<button v-on:click="say('hi')">Say hi</button>
 							<button v-on:click="say('what')">Say what</button>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  methods: {
@@ -122,23 +122,23 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						
-					</textarea>
+					</div>
 				</div>
 				<div class="test-block src">
 					<div class="desc">
 						access the original DOM event in an inline statement handler
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<button v-on:click="warn('Form cannot be submitted yet.', $event)">
 							  Submit
 							</button>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  methods: {
@@ -150,17 +150,17 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Event Modifiers
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<span v-html="msg"></span>
 							<br/>
@@ -208,11 +208,11 @@
 							
 							only trigger handler if event.target is the element itself<br/>
 							i.e. not from a child element
-							<div v-on:click.self="init('outer div click triggered')">
+							<div v-on:click.self="init('outer div click triggered')" style="color: red;">
 								<button>
 								  click (not works)
 								</button>
-								<span style="color: red;">click (works)</span>
+								click (works)
 							</div>
 							<br/>
 							
@@ -222,8 +222,8 @@
 							</button>
 							<br/>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -241,17 +241,17 @@
 							inc: function () {this.cnt++}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Event Modifiers
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<span v-html="msg"></span>
 							<br/>
@@ -293,8 +293,8 @@
 							Try click this button by<br/>
 							Left/Right/Middle button of mouse
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -307,10 +307,10 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						
-					</textarea>
+					</div>
 				</div>
 				
 <!--				
@@ -318,20 +318,20 @@
 					<div class="desc">
 					
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {}
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 -->
 			</div>

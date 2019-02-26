@@ -30,7 +30,7 @@
 	</head>
     <body>
 		<div class="prev"><a href="007_eventHandling.html">&lt;</a></div>
-		<div class="next"><a href="008_formBindings.html">&gt;</a></div>
+		<div class="next"><a href="009_components.html">&gt;</a></div>
 		<div class="tests">
 			<div class="test-block exec">
 				<div class="desc">template syntax</div>
@@ -50,7 +50,7 @@
 					<div class="desc">
 						Basic Usage
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							v-model internally uses different properties and emits different events for different input elements:
 							<br/>
@@ -65,7 +65,7 @@
 							<span>Multiline message is:</span>
 							<p style="white-space: pre-line;">{{ mmsg }}</p>
 							<br/>
-							<textarea v-model="mmsg" placeholder="add multiple lines">&lt;/textarea&gt;
+							<textarea v-model="mmsg" placeholder="add multiple lines"></textarea>
 							
 							<br/><br/>
 							Checkbox:<br/>
@@ -84,8 +84,8 @@
 							<span>Checked names: {{ checkedNames }}</span>
 
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -95,17 +95,17 @@
 							checkedNames: ["John", "Mike"]
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Basic Usage 2
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							Radio:<br/>
 							<input type="radio" id="one" value="One" v-model="picked">
@@ -136,8 +136,8 @@
 							<br>
 							<span>Selected: {{ multiSelected }}</span>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -146,17 +146,17 @@
 							multiSelected: ['B', 'C']
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Dynamic options rendered with v-for
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<select v-model="selected">
 							  <option v-for="option in options" v-bind:value="option.value">
@@ -165,8 +165,8 @@
 							</select>
 							<span>Selected: {{ selected }}</span>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -178,17 +178,17 @@
 							]
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Value Bindings
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							true -> yes, false -> no<br/>
 							<input
@@ -215,8 +215,8 @@
 							<br/>
 							selected: {{ selected }}
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -229,48 +229,48 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Modifiers
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							The input sync model while typing<br/>
-							<input v-model="msg" /><br/>
+							<input v-model="msg" placeholder="input some text" /><br/>
 							{{ msg }}
 							
 							<br/><br/>
 							The input sync model after change (press enter or tab after input)<br/>
-							<input v-model.lazy="msg2" /><br/>
+							<input v-model.lazy="msg2" placeholder="input some text" /><br/>
 							{{ msg2 }}
 							
 							<br/><br/>
 							The input value is a string<br/>
-							<input type="number" v-model="msg3" /><br/>
+							<input type="number" v-model="msg3" placeholder=" e.g. 123" /><br/>
 							val+10 = {{ msg3+10 }}
 							
 							<br/><br/>
 							The input value is a number<br/>
-							<input type="number" v-model.number="msg4" /><br/>
+							<input type="number" v-model.number="msg4" placeholder=" e.g. 123" /><br/>
 							val+10 = {{ msg4+10 }}
 							
 							<br/><br/>
 							The input value has space both side<br/>
-							<input v-model="msg5" /><br/>
-							{{ realmsg5 }}
+							<input v-model="msg5" placeholder="e.g.    123 with leading space" /><br/>
+							<div v-html="realmsg5"></div>
 							<br/><br/>
 							The input value has no both side (in vm)<br/>
-							<input v-model.trim="msg6" /><br/>
-							{{ realmsg6 }}
+							<input v-model.trim="msg6" placeholder="e.g.    123 with leading space" /><br/>
+							<div v-html="realmsg6"></div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -283,17 +283,17 @@
 						  },
 						  computed: {
 						    realmsg5: function () {
-							  return this.msg5.replace(/ /g, '&nbsp;');
+							  return 'the real value is "'+this.msg5.replace(/ /g, '&nbsp;')+'"';
 							},
 							realmsg6: function () {
-							  return this.msg6.replace(/ /g, '&nbsp;');
+							  return 'the real value is "'+this.msg6.replace(/ /g, '&nbsp;')+'"';
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 <!--				
@@ -301,20 +301,20 @@
 					<div class="desc">
 					
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {}
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 -->
 			</div>

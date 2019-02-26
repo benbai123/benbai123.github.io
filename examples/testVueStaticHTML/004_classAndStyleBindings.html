@@ -50,7 +50,7 @@
 					<div class="desc">
 						class bindings
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<style type="text/css" scoped>
 						  .active {
 							font-size: 22px;
@@ -67,8 +67,8 @@
 							  Some Text
 							</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -76,18 +76,18 @@
 						    hasError: false
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.isActive = false;
 					  vm.hasError = true;
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						class object bindings
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<style type="text/css" scoped>
 						  .active {
 							font-size: 22px;
@@ -102,8 +102,8 @@
 							  Some Text
 							</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -113,18 +113,18 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.classObject.active = false;
 					  vm.classObject['text-danger'] = true;
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						class computed property bindings
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<style type="text/css" scoped>
 						  .active {
 							font-size: 22px;
@@ -139,8 +139,8 @@
 							  Some Text
 							</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -156,17 +156,17 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.error = {type: 'fatal'}
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						class array bindings
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<style type="text/css" scoped>
 						  .active {
 							font-size: 22px;
@@ -181,8 +181,8 @@
 							  Some Text
 							</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -191,21 +191,21 @@
 						    errorClass: 'text-danger'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.isActive = false;
 					  /* or
 					  vm.activeClass = '';
 					  vm.errorClass = ''
 					  */
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 					  Class binding with component
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<style type="text/css" scoped>
 						  .baz {
 							font-size: 22px;
@@ -223,30 +223,30 @@
 						<div id="example">
 							<my-component class="baz boo"></my-component>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						Vue.component('my-component', {
 						  template: '<p class="foo bar">Hi</p>'
 						})
 						new Vue({ el: '#example' })
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  alert(document.querySelectorAll('.foo')[0].classList);
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Binding Inline Styles - Object Syntax
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<div v-bind:style="styleObject">
 								Some Text
 							</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -256,25 +256,25 @@
 						    }
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.styleObject.color = 'blue';
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Binding Inline Styles - Array Syntax
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<div v-bind:style="[baseStyles, overridingStyles]">
 
 								Some Text
 							</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -288,31 +288,31 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.baseStyles.color = 'blue';
 						vm.overridingStyles.border = '3px solid black';
-					</textarea>
+					</div>
 				</div>
 <!--				
 				<div class="test-block src">
 					<div class="desc">
 					
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {}
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 -->
 			</div>

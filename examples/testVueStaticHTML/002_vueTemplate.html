@@ -50,82 +50,82 @@
 					<div class="desc">
 						Vue basic text interpolation
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<span>Message: {{ msg }}</span>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
 							msg: 'the message'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
-						vm.msg = 'updated';</textarea>
+					</div>
+					<div class="test-console">
+						vm.msg = 'updated';</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						one-time interpolations by using the v-once directive
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example"
 							v-once>
 							<span>Message: {{ msg }}</span>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
 							msg: 'the message'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						// will not work since v-once
-						vm.msg = 'updated';</textarea>
+						vm.msg = 'updated';</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Using v-html directive to output real HTML
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							Using mustaches: 
 							<p>{{ rawHtml }}</p>
 							Using v-html directive:
 							<p v-html="rawHtml"></p>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
 							rawHtml: '<span style="color: red;">This should be red.</span>'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Use v-bind to bind attributes
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<div v-bind:id="divID" v-bind:style="divStyle">{{msg}}</div>
 							<button v-bind:disabled="isButtonDisabled">testBtn</button>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -135,25 +135,25 @@
 							isButtonDisabled: true
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.isButtonDisabled = false;
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						JavaScript expressions inside data bindings
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							{{ number + 1 }}<br/>
 							{{ ok ? 'YES' : 'NO' }}<br/>
 							{{ message.replace('msg', 'abc') }}<br/>
 							<div v-bind:id="'list-' + id">div has id</div>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -163,24 +163,24 @@
 							message: 'the msg'
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						var div = document.getElementById('list-1');
 						alert(div.innerHTML+' '+div.id);
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Dynamic directive argument
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							{{changecolorevent}}
 							<span v-on:[changecolorevent]="changeColor" v-bind:style="{ color: color, fontSize: size}">Some Text</span> to change color
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -197,30 +197,30 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.changecolorevent = 'click';
-					</textarea>
+					</div>
 				</div>
 <!--				
 				<div class="test-block src">
 					<div class="desc">
 					
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {}
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 -->
 			</div>

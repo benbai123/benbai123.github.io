@@ -50,7 +50,7 @@
 					<div class="desc">
 					  Basic computed property - cached based on their dependencies
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<p>Original message: "{{ message }}"</p>
 							<p>Computed reversed message: "{{ reversedMessage }}"</p>
@@ -58,8 +58,8 @@
 							<p>Computed reversed message 3: "{{ reversedMessage }}"</p>
 							<p>reversedMessage called "{{ cnt }}" times</p>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						window.cnt = 0;
 						var vm = new Vue({
 						  el: '#example',
@@ -79,17 +79,17 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.message = 'Goodbye'
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 					  Basic method - no cache, execute each time when it is calling
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<p>Original message: "{{ message }}"</p>
 							<p>Computed reversed message: "{{ reversedMessage() }}"</p>
@@ -97,8 +97,8 @@
 							<p>Computed reversed message 3: "{{ reversedMessage() }}"</p>
 							<p>reversedMessage called "{{ cnt() }}" times</p>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						window.cnt = 0;
 						var vm = new Vue({
 						  el: '#example',
@@ -118,21 +118,21 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.message = 'Goodbye'
-					</textarea>
+					</div>
 				</div>
 				<div class="test-block src">
 					<div class="desc">
 						use 'watch'  (not suggested, but necessary when you want to perform asynchronous or expensive operations in response to changing data.)
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							{{ fullName }}
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -149,21 +149,21 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.lastName = 'another_last';
-					</textarea>
+					</div>
 				</div>
 				<div class="test-block src">
 					<div class="desc">
 						use 'computed property'  (suggested)
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							{{ fullName }}
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -176,17 +176,17 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.lastName = 'another_last';
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 						Computed Setter
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							firstName: {{firstName}}
 							<br/>
@@ -195,8 +195,8 @@
 							fullName: {{ fullName }}
 							<br/>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -218,17 +218,17 @@
 							  }
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 						vm.fullName = 'John Doe'
-					</textarea>
+					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
 					  Watcher for async operation
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							<p>
 								type a question:
@@ -236,8 +236,8 @@
 							</p>
 							<p>{{ answer }}</p>
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {
@@ -267,30 +267,30 @@
 							}
 						  }
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					  vm.question = 'ttttest'
-					</textarea>
+					</div>
 				</div>
 <!--				
 				<div class="test-block src">
 					<div class="desc">
 					
 					</div>
-					<textarea class="html" placeholder="Enter HTML">
+					<div class="html">
 						<div id="example">
 							
 						</div>
-					</textarea>
-					<textarea class="js" placeholder="Enter Test JavaScript">
+					</div>
+					<div class="js">
 						var vm = new Vue({
 						  el: '#example',
 						  data: {}
 						})
-					</textarea>
-					<textarea class="test-console" placeholder="Enter Console CMD">
+					</div>
+					<div class="test-console">
 					
-					</textarea>
+					</div>
 				</div>
 -->
 			</div>
