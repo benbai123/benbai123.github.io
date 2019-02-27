@@ -29,8 +29,8 @@
 		<script src="codemirror/addon/display/placeholder.js"></script>
 	</head>
     <body>
-		<div class="prev"><a href="009_components.html">&lt;</a></div>
-		<div class="next"><a href="011_componentProps.html">&gt;</a></div>
+		<div class="prev"><a href="013_componentsSlots.html">&lt;</a></div>
+		<div class="next"><a href="014_componentDynamicAsync.html">&gt;</a></div>
 		<div class="tests">
 			<div class="test-block exec">
 				<div class="desc">template syntax</div>
@@ -48,26 +48,71 @@
 				
 				<div class="test-block src">
 					<div class="desc">
-						Name Casing
+						keep-alive with Dynamic Components
 					</div>
 					<div class="html">
 						<div id="example">
-							only my-component-one valid<br/>
-							<my-component-one></my-component-one>
+							try input something then switch tab and switch back again
+							<button v-for="tab in tabs" v-bind:key="tab" 
+								v-on:click="currentTab = tab">
+							  {{ tab }}
+							</button>
 							<br/>
-							both MyComponentTwo my-component-two valid<br/>
-							<div is="MyComponentTwo"></div>
-							<my-component-two></my-component-two>
+							without keep-alive, input content gone
+							<component v-bind:is="currentTabComponent">
+							</component>
+
+							<br/>
+							with keep-alive, input content still exists
+							<keep-alive>
+								<component v-bind:is="currentTabComponent">
+								</component>
+							</keep-alive>
+						</div>
+					</div>
+					<div class="js">
+						Vue.component('tab-home', { template: '<div>Home component<input /></div>' })
+						Vue.component('tab-posts', { template: '<div>Posts component<input /></div>' })
+						Vue.component('tab-archive', { template: '<div>Archive component<input /></div>' })
+						var vm = new Vue({
+						  el: '#example',
+						  data: {
+							currentTab: 'Home',
+							tabs: ['Home', 'Posts', 'Archive']
+						  },
+						  computed: {
+							currentTabComponent: function () {
+							  return 'tab-' + this.currentTab.toLowerCase()
+							}
+						  }
+						})
+					</div>
+					<div class="test-console">
+						<script>
+							if (!window.skipTestJS) {}
+						</script>
+					</div>
+				</div>
+				
+				<div class="test-block src">
+					<div class="desc">
+						Async Components
+					</div>
+					<div class="html">
+						<div id="example">
+							<async-example></async-example>
 						</div>
 					</div>
 					<div class="js">
 						<script>
-							if (window.Vue) {
-								Vue.component('my-component-one', {
-									template: '<div>this is component-one</div>'
-								});
-								Vue.component('MyComponentTwo', {
-									template: '<div>this is component-two</div>'
+							if (!window.skipTestJS && window.Vue) {
+								Vue.component('async-example', function (resolve, reject) {
+								  setTimeout(function () {
+									// Pass the component definition to the resolve callback
+									resolve({
+									  template: '<div>I am async!</div>'
+									})
+								  }, 1000)
 								})
 								var vm = new Vue({
 								  el: '#example',
@@ -78,45 +123,60 @@
 					</div>
 					<div class="test-console">
 						<script>
-							if (window.Vue) {}
+							if (!window.skipTestJS) {}
 						</script>
 					</div>
 				</div>
 				
 				<div class="test-block src">
 					<div class="desc">
-						Global Registration, Local Registration
+						Handling Loading State
 					</div>
 					<div class="html">
 						<div id="example">
-							Global Registration<br/>
-							<my-component-one></my-component-one>
-							<br/>
-							Local Registration<br/>
-							<component-a></component-a>
+							<async-example></async-example>
 						</div>
 					</div>
 					<div class="js">
 						<script>
-							if (window.Vue) {
-								Vue.component('my-component-one', {
-									template: '<div>this is component-one</div>'
-								});
-								var ComponentA = {
-									template: '<div>this is component A</div>'
+							if (!window.skipTestJS && window.Vue) {
+								LoadingComponent = {
+								  template: '<div>Loading...</div>'
 								};
+								ErrorComponent = {
+								  template: '<div>Error</div>'
+								};
+								const AsyncComponent = () => ({
+								  // The component to load (should be a Promise)
+								  component: new Promise(function (resolve, reject) {
+									  setTimeout(function () {
+										// Pass the component definition to the resolve callback
+										resolve({
+										  template: '<div>I am async!</div>'
+										})
+									  }, 1000)
+									}),
+								  // A component to use while the async component is loading
+								  loading: LoadingComponent,
+								  // A component to use if the load fails
+								  error: ErrorComponent,
+								  // Delay before showing the loading component. Default: 200ms.
+								  delay: 200,
+								  // The error component will be displayed if a timeout is
+								  // provided and exceeded. Default: Infinity.
+								  timeout: 3000
+								})
+								Vue.component('async-example', AsyncComponent);
 								var vm = new Vue({
 								  el: '#example',
-								  components: {
-									'component-a': ComponentA
-								  }
+								  data: {}
 								})
 							}
 						</script>
 					</div>
 					<div class="test-console">
 						<script>
-							if (window.Vue) {}
+							if (!window.skipTestJS) {}
 						</script>
 					</div>
 				</div>
@@ -132,7 +192,7 @@
 					</div>
 					<div class="js">
 						<script>
-							if (window.Vue) {
+							if (!window.skipTestJS && window.Vue) {
 								var vm = new Vue({
 								  el: '#example',
 								  data: {}
@@ -142,7 +202,7 @@
 					</div>
 					<div class="test-console">
 						<script>
-							if (window.Vue) {}
+							if (!window.skipTestJS) {}
 						</script>
 					</div>
 				</div>

@@ -1,4 +1,4 @@
-
+window.skipTestJS = true;
 var htmlCM,
 	jsCM,
 	consoleCM;
@@ -165,4 +165,5 @@ window.onload = function () {
 		}
 	}
 	$('body').on('keyup', keyEvantHandler);
+	console.log($('.test-block.src').length + ' samples this page');
 }
