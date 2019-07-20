@@ -19,6 +19,7 @@
 			}
 			tbody td img {
 				max-width: 400px; height: auto;
+				cursor: pointer;
 			}
 			.preface {
 				font-size: 32px;
@@ -32,7 +33,8 @@
 	</head>
 	<body>
 		<div class="preface">
-			這些是個人覺得很有趣又適合閤家觀賞的動畫
+			這些是個人覺得很有趣又適合閤家觀賞的動畫<br/>
+			點擊左方連結到影片, 點擊圖片開原圖
 		</div>
 		<div style="margin: 20px; font-size: 22px;">
 			<table max-width: 100%;>
@@ -146,5 +148,12 @@
 				</tbody>
 			</table>
 		</div>
+		<script>
+			window.addEventListener('click', function(e) {
+			    if(e.target.tagName.toLowserCase() == 'img') {
+				window.open(e.target.src, '_blank');
+			    }
+			});
+		</script>
 	</body>
 </html>
