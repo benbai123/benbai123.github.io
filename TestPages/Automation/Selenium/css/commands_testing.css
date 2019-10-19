@@ -1,0 +1,13 @@
+
+body {
+	margin: 20px;
+	line-height: 2em;
+}
+
+.info {
+	color: blue;
+}
+
+.testing-area {
+	border: 2px solid red;
+}
