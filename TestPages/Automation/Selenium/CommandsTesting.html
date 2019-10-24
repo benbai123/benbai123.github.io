@@ -40,9 +40,27 @@
 			disabled text input <input type="text" disabled="disabled"
 				class="disabled-text-input" /><br />
 			checkbox <label><input type="checkbox" class="test-checkbox" value="testCbx" />test checkbox</label><br />
-			radios <label><input type="radio" name="gender" value="male" />Male</label>
-			<label><input type="radio" name="gender" value="female" />Female</label>
-			<label><input type="radio" name="gender" value="other" />Other</label>
+			radios
+			<span class="test-radios">
+				<label><input type="radio" name="gender" value="male" />Male</label>
+				<label><input type="radio" name="gender" value="female" />Female</label>
+				<label><input type="radio" name="gender" value="other" />Other</label>
+			</span><br />
+			number:<br />
+			wrapped by a form and auto submit on change<br />
+			so you can see the notification from browser when input wrong value
+				<form onsubmit="return false;">
+					<input type="number" min="0" max="100" step="0.2"
+						class="test-number-input"
+						onchange="document.querySelector('.number-submit').click();" /><br />
+					<button type="submit" style="display: none;" class="number-submit"></button>
+				</form>
+			range <input type="range" min="0" max="100" step="0.2" value="0"
+				class="test-range-input" oninput="rangeDisplay.value = this.value" />
+				<input type="number" value="0" readonly="readonly" id="rangeDisplay" /><br />
+			color <input type="color" class="test-color-input" value="#7ed057"
+						onchange="colorDisplay.value = this.value" />
+				<input type="text" value="#7ed057" readonly="readonly" id="colorDisplay" /><br />
 		</div>
 		<script src="js/commands_testing.js"></script>
 	</body>

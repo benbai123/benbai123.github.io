@@ -11,3 +11,8 @@ body {
 .testing-area {
 	border: 2px solid red;
 }
+
+#rangeDisplay, #colorDisplay {
+	outline: 0;
+	border: 0;
+}
