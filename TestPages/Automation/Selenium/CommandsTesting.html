@@ -61,6 +61,16 @@
 			color <input type="color" class="test-color-input" value="#7ed057"
 						onchange="colorDisplay.value = this.value" />
 				<input type="text" value="#7ed057" readonly="readonly" id="colorDisplay" /><br />
+			date:<br />
+			wrapped by a form and auto submit on change<br />
+			so you can see the notification from browser when input wrong value
+				<form onsubmit="return false;">
+					<input type="date" value="2019-10-27"
+						class="test-date-input"
+						min="2019-01-06" max="2019-12-29" step="7"
+						onchange="document.querySelector('.date-submit').click();" /><br />
+					<button type="submit" style="display: none;" class="date-submit"></button>
+				</form>
 		</div>
 		<script src="js/commands_testing.js"></script>
 	</body>

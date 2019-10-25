@@ -7,3 +7,9 @@ function unmarkAllTestingAreas () {
 		e.classList.remove('testing-area');
 	});
 }
+function addDays (dateInp, daysToAdd) {
+	let date = new Date(dateInp.valueAsDate.getTime());
+	date.setDate(date.getDate()+daysToAdd);
+	dateInp.valueAsDate = date;
+	dateInp.onchange();
+}
