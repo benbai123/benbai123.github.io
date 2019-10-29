@@ -30,6 +30,7 @@
 				<input type="text" class="inp4Multiple" />
 			</div>
 		</div>
+		
 		<div class="testing-block input-elements">
 			<div class="desc">
 				This block for testing interact with various input elements
@@ -71,6 +72,35 @@
 						onchange="document.querySelector('.date-submit').click();" /><br />
 					<button type="submit" style="display: none;" class="date-submit"></button>
 				</form>
+		</div>
+		
+		<div class="testing-block select-option">
+			<div class="desc">
+				This block for testing select/option elements
+			</div>
+			single select
+			<select class="test-single-select">
+				<option value="eat">Eat</option>
+				<option value="sleep">Sleep</option>
+			</select><br />
+			multiple select
+			<select multiple="multiple" class="test-multiple-select">
+				<option value="ham">Ham</option>
+				<option value="cheese">Cheese</option>
+				<option value="egg">Egg</option>
+				<option value="tomato">Tomato</option>
+				<option value="beef">Beef</option>
+			</select><br />
+		</div>
+		
+		<div class="testing-block iframes-content">
+			<div class="desc">
+				This block for testing iframes
+			</div>
+			iframe 001 and inner iframe 002 <br />
+			<iframe src="html/iframe_001.html"></iframe><br />
+			iframe 003 <br />
+			<iframe src="html/iframe_003.html"></iframe><br />
 		</div>
 		<script src="js/commands_testing.js"></script>
 	</body>

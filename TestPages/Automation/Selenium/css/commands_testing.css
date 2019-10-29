@@ -16,3 +16,8 @@ body {
 	outline: 0;
 	border: 0;
 }
+
+.test-multiple-select {
+	vertical-align: top;
+	height: 100px;
+}
