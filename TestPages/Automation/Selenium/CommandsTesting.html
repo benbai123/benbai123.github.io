@@ -95,12 +95,24 @@
 		
 		<div class="testing-block iframes-content">
 			<div class="desc">
-				This block for testing iframes
+				This block for testing iframes<br />
+				just output some message to your java console
 			</div>
 			iframe 001 and inner iframe 002 <br />
-			<iframe src="html/iframe_001.html"></iframe><br />
+			<iframe id="iframe001" src="html/iframe_001.html"></iframe><br />
 			iframe 003 <br />
-			<iframe src="html/iframe_003.html"></iframe><br />
+			<iframe id="iframe003" src="html/iframe_003.html"></iframe><br />
+		</div>
+
+		<div class="testing-block child-windows">
+			<div class="desc">
+				This block for child windows<br />
+				just do some action and output some<br />
+				message to your java console
+			</div>
+			<a href="html/window_001.html" target="_blank">click to open window_001 in new tab</a><br />
+			<button class="newwin-002" onclick="window.open('html/window_002.html', 'newwin002', 'height=200,width=200');">open window_002 in new window</button><br />
+			<button class="newwin-003" onclick="window.open('html/window_003.html', '_blank');">open window_003 in new tab</button>
 		</div>
 		<script src="js/commands_testing.js"></script>
 	</body>
