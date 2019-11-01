@@ -21,3 +21,7 @@ body {
 	vertical-align: top;
 	height: 100px;
 }
+
+.hidden {
+	display: none;
+}
