@@ -13,3 +13,12 @@ function addDays (dateInp, daysToAdd) {
 	dateInp.valueAsDate = date;
 	dateInp.onchange();
 }
+
+function pushStateToHistory () {
+	document.querySelector('.push-state-link').style.display = 'none';
+	history.pushState({'selectorToHide': 'push-state-link'},
+		"pushedPage", "pushedPage.html");
+}
+window.onpopstate = function(event) {
+	console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+};
