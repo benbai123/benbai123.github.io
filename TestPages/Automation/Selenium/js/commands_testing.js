@@ -15,10 +15,19 @@ function addDays (dateInp, daysToAdd) {
 }
 
 function pushStateToHistory () {
-	document.querySelector('.push-state-link').style.display = 'none';
-	history.pushState({'selectorToHide': 'push-state-link'},
+	let ele = document.querySelector('.push-state-link');
+	ele.classList.add('hidden');
+	history.pushState({'selectorToHide': '.push-state-link'},
 		"pushedPage", "pushedPage.html");
 }
 window.onpopstate = function(event) {
-	console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+	document.querySelectorAll('.hidden').forEach((e) => {
+		e.classList.remove('hidden');
+	});
+	if (event.state && event.state.selectorToHide) {
+		document.querySelectorAll(event.state.selectorToHide)
+			.forEach((e) => {
+				e.classList.add('hidden');
+			});
+	}
 };
