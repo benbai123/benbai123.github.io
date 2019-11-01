@@ -31,3 +31,18 @@ window.onpopstate = function(event) {
 			});
 	}
 };
+
+function addChild (dom) {
+	dom.style.display = 'none';
+	setTimeout(() => {
+		let block = document.querySelector('.flow-control');
+		let child = document.createElement('div');
+		child.classList.add('added-child');
+		child.innerHTML = 'added child';
+		block.appendChild(child);
+	}, 5000);
+}
+
+function hide (dom) {
+	setTimeout(() => {dom.style.display = 'none';}, 5000);
+}

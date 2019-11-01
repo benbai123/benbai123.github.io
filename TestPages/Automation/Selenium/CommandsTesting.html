@@ -124,6 +124,17 @@
 			<a class="push-state-link" href="javascript:void(0);"
 				onclick="pushStateToHistory();">push state to history</a>
 		</div>
+		<div class="testing-block flow-control">
+			<div class="desc">
+				This block for flow control<br />
+			</div>
+			<div class="add-child" onclick="addChild(this);">
+				click to hide self and add child to block after 5 seconds<br />
+			</div>
+			<div class="to-be-hidden" onclick="hide(this)">
+				click to hide this element after 5 seconds
+			</div>
+		</div>
 		<script src="js/commands_testing.js"></script>
 	</body>
 </html>
