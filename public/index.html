@@ -40,7 +40,7 @@
 			<footer v-cloak>
 				<div v-for="(val, key) in footer">
 					{{key}}: <br />
-					<a v-for="item in val" :href="item.url">{{item.name}}</a>
+					<a v-for="item in val" target="_blank" :href="item.url">{{item.name}}</a>
 				</div>
 			</footer>
 		</div>
