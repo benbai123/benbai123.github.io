@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Works</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel = "stylesheet" type = "text/css" href = "resources/css/app.css" />
+		<link rel = "stylesheet" type = "text/css" href = "resources/lib/d3/radar-chart.min.css" />
+	</head>
+	<body>
+		<div id="app">
+			<header v-cloak>
+				{{header}}
+			</header>
+			<article v-cloak>
+				<section>
+					<!-- 以 CSS 實現展開/收合 -->
+					<input type="checkbox" id="radar-block" />
+					<label for="radar-block" class="title">
+						能力自評雷達圖 (d3.js) <div class="arrow"></div>
+					</label>
+					<div class="cnt">
+						<!-- D3 雷達圖的 Vue 元件 -->
+						<d3-radar :data="article.abilities" :config="radarConfig"></d3-radar>
+					</div>
+				</section>
+				<section v-for="item in article.highlights">
+					<input type="checkbox" :id="item.id" />
+					<label :for="item.id" class="title">
+						{{item.title}} <div class="arrow"></div>
+					</label>
+					<div class="cnt">
+						<div class="urls">
+							<a v-for="url in item.urls" :href="url">{{url}}</a>
+						</div>
+						<div class="desc" v-html="item.desc"></div>
+					</div>
+				</section>
+			</article>
+			<footer v-cloak>
+				<div v-for="(val, key) in footer">
+					{{key}}: <br />
+					<a v-for="item in val" :href="item.url">{{item.name}}</a>
+				</div>
+			</footer>
+		</div>
+		<!-- 看 source 用的是 exports 不是 ES6 export
+			故直接載入 -->
+		<script src="resources/lib/vue/vue.min.js"></script>
+		<script src="resources/lib/vue/vuex.js"></script>
+		<script src="resources/lib/d3/d3.v3.js"></script>
+		<script src="resources/lib/d3/radar-chart.min.js"></script>
+		<script type="module" src="resources/js/app.js"></script>
+	</body>
+</html>

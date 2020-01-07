@@ -1,0 +1,87 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	line-height: 1.5em;
+}
+
+#app {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 15px 25px;
+	display: flex;
+    flex-direction: column;
+}
+
+header {
+	font-size: 2em;
+	padding-bottom: 30px;
+}
+
+article {
+	flex: auto;
+	overflow: auto;
+	padding-bottom: 100px;
+}
+article input[type="checkbox"] {
+	display: none;
+}
+article label {
+	cursor: pointer;
+	border: 1px solid #ccc;
+	user-select: none;
+	display: inline-block;
+	padding: 5px;
+}
+.arrow {
+	display: inline-block;
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 15px solid #ccc;
+	
+	transition-duration: 0.3s;
+	transition-property: transform;
+}
+article input:checked + label .arrow {
+	transform:rotate(180deg);
+}
+article .cnt {
+	max-height: 0;
+	transition: max-height 0.5s;
+	overflow: hidden;
+}
+article input:checked + label + .cnt {
+	max-height: 600px;
+	transition: max-height 0.5s ease-in;
+}
+article .title,
+article .urls {
+	margin-bottom: 10px;
+}
+article .title {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+article .desc {
+	white-space: pre-line;
+	margin-bottom: 20px;
+}
+
+footer div {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 1.5em;
+	margin: 10px;
+}
+
+a:after {
+	content: '\A';
+	white-space: pre;
+}
+
+[v-cloak] {
+	display: none;
+}
